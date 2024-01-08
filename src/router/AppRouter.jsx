@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRouter from "./PrivateRouter";
+import { Dashboard } from "@mui/icons-material";
 
 const AppRouter = () => {
   return (
