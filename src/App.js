@@ -5,12 +5,12 @@ import store from "./app/store";
 
 function App() {
   return (
-    <div>
+    <>
       <Provider store={store}>
         <AppRouter />
-        <ToastContainer />
       </Provider>
-    </div>
+      <ToastContainer />
+    </>
   );
 }
 

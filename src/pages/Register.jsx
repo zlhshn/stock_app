@@ -9,9 +9,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
 import RegisterForm from "../components/RegisterForm";
+import useAuth from "../service/useAuth";
 
 const Register = () => {
-  const navigate = useNavigate();
+
+  const { register } = useAuth();
 
   const registerSchema = object({
     firstName: string().required("Firstname is required"),
@@ -73,7 +75,7 @@ const Register = () => {
             alignItems={"center"}
             align="center"
           >
-          STOCK MANAGEMENT
+            STOCK MANAGEMENT
           </Typography>
         </Grid>
 
@@ -121,7 +123,7 @@ const Register = () => {
             }}
             validationSchema={registerSchema}
             onSubmit={(values, actions) => {
-              // register(values);
+              register(values);
               actions.resetForm();
               actions.setSubmitting(false);
             }}

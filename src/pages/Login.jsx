@@ -121,7 +121,7 @@ const Login = () => {
                   </div>
                   {touched.password && errors.password && (
                     <span className="absolute text-red-500 text-sm pt-1">
-                      *{errors.password}
+                      {errors.password}
                     </span>
                   )}
                 </div>
