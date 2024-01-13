@@ -21,7 +21,7 @@ const icons = [
   },
   {
     title: "Purchases",
-    icon: <ShoppingBasketIcon/>,
+    icon: <ShoppingBasketIcon />,
     url: "/dashboard/purchases/",
   },
   {
@@ -29,11 +29,13 @@ const icons = [
     icon: <PaidIcon />,
     url: "/dashboard/sales/",
   },
+
   {
     title: "Firms",
     icon: <StorefrontIcon />,
     url: "/dashboard/firms/",
   },
+
   {
     title: "Brands",
     icon: <StarPurple500Icon />,
@@ -49,7 +51,7 @@ const icons = [
 const MenuList = ({ open }) => {
   const navigate = useNavigate();
   return (
-    <List >
+    <List>
       {icons.map((item, index) => (
         <ListItem
           key={index}

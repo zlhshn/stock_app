@@ -15,6 +15,7 @@ import { Outlet } from "react-router-dom";
 import MenuList from "../components/MenuList";
 import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
+import useAuth from "../service/useAuth";
 
 const drawerWidth = 200;
 
@@ -85,6 +86,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Dashboard() {
   const { user } = useSelector((state) => state.auth);
+  const { logout } = useAuth();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -116,7 +118,11 @@ export default function Dashboard() {
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Stock Control
           </Typography>
-          {user && <Button color="inherit">Logout</Button>}
+          {user && (
+            <Button color="inherit" onClick={logout}>
+              Logout
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -128,7 +134,7 @@ export default function Dashboard() {
           },
         }}
       >
-        <DrawerHeader sx={{ bgcolor: "#61727C" ,color:"white"}}>
+        <DrawerHeader sx={{ bgcolor: "#61727C", color: "white" }}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />

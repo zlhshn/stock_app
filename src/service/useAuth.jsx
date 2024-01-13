@@ -5,6 +5,7 @@ import {
   fetchStart,
   loginSuccess,
   registerSuccess,
+  logoutSuccess,
 } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
 import useAxios from "./useAxios";
@@ -39,10 +40,24 @@ const useAuth = () => {
       dispatch(fetchFail());
       toastError("The register process failed.");
       console.log(error);
-    }
+    }}
+
+    const logout = async () => {
+      dispatch(fetchStart());
+      try {
+        await axiosWithToken("/auth/logout");
+        dispatch(logoutSuccess());
+        toastSuccess("Logout is successful.");
+      } catch (error) {
+        dispatch(fetchFail());
+        toastError("The logout process failed.");
+        console.log(error);
+      }
+    };
+
+    return { login, register, logout };
   };
 
-  return { login, register };
-};
+
 
 export default useAuth;
