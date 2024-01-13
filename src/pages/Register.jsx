@@ -7,33 +7,14 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
-import { object, string } from "yup";
-import RegisterForm from "../components/RegisterForm";
+
+import RegisterForm, {registerSchema} from "../components/RegisterForm";
 import useAuth from "../service/useAuth";
 
 const Register = () => {
-
   const { register } = useAuth();
 
-  const registerSchema = object({
-    firstName: string().required("Firstname is required"),
-    lastName: string().required("Lastname is required"),
-    username: string().required("Username is required"),
-    email: string()
-      .email("Please enter a valid email")
-      .required("Email is required"),
-    password: string()
-      .required("Password is required.")
-      .min(8, "Password must contain at least 8 characters")
-      .max(20, "Password must contain no more than 20 characters")
-      .matches(/\d+/, "Password must contain at least one number")
-      .matches(/[a-z]/, "Password must contain at least one lowercase letter")
-      .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-      .matches(
-        /[@.$!%*?&]+/,
-        "Password must contain at least one special character (@.$!%*?&)"
-      ),
-  });
+
 
   return (
     <Box
@@ -127,7 +108,7 @@ const Register = () => {
               actions.resetForm();
               actions.setSubmitting(false);
             }}
-            component={(props) => RegisterForm({ ...props })}
+            component={(props) => <RegisterForm {...props} />}
           ></Formik>
 
           <Box color="purple" sx={{ textAlign: "center", mt: 2 }}>

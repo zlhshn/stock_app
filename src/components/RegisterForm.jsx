@@ -2,6 +2,28 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Formik, Form } from "formik";
+import { object, string } from "yup";
+
+
+export const registerSchema = object({
+  firstName: string().required("Firstname is required"),
+  lastName: string().required("Lastname is required"),
+  username: string().required("Username is required"),
+  email: string()
+    .email("Please enter a valid email")
+    .required("Email is required"),
+  password: string()
+    .required("Password is required.")
+    .min(8, "Password must contain at least 8 characters")
+    .max(20, "Password must contain no more than 20 characters")
+    .matches(/\d+/, "Password must contain at least one number")
+    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .matches(
+      /[@.$!%*?&]+/,
+      "Password must contain at least one special character (@.$!%*?&)"
+    ),
+});
 
 const RegisterForm = ({
   handleChange,
@@ -17,7 +39,6 @@ const RegisterForm = ({
           display: "flex",
           flexDirection: "column",
           gap: 2,
-         
         }}
       >
         <TextField
