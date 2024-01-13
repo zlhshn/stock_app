@@ -11,7 +11,6 @@ export const toastSuccess = (msg) => {
     draggable: true,
     progress: undefined,
     theme: "colored",
-    transition: Bounce,
   });
 };
 
@@ -25,7 +24,6 @@ export const toastWarn = (msg) => {
     draggable: true,
     progress: undefined,
     theme: "colored",
-    transition: Bounce,
   });
 };
 
@@ -39,7 +37,6 @@ export const toastError = (msg) => {
     draggable: true,
     progress: undefined,
     theme: "colored",
-    transition: Bounce,
   });
 };
 
@@ -53,6 +50,5 @@ export const toastInfo = (msg) => {
     draggable: true,
     progress: undefined,
     theme: "colored",
-    transition: Bounce,
   });
 };

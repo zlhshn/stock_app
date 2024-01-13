@@ -4,8 +4,11 @@ import stockImage from "../assets/loginimage.png";
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
 import loginSpinner from "../assets/loading-gif-png-5.gif";
+import useAuth from "../service/useAuth";
 
 const Login = () => {
+  const { login } = useAuth();
+
   const loginSchema = object({
     email: string()
       .email("Please enter a valid email")
@@ -38,6 +41,7 @@ const Login = () => {
             initialValues={{ email: "", password: "" }}
             validationSchema={loginSchema}
             onSubmit={(values, actions) => {
+              login(values);
               actions.resetForm();
               actions.setSubmitting(false);
             }}
@@ -127,7 +131,7 @@ const Login = () => {
                     type="submit"
                     className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
-                    {isSubmitting ? loginSpinner : "Sign in"}
+                    Sign in
                   </button>
                 </div>
                 <div className="text-center">
