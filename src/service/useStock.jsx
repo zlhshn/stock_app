@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
-import { fetchFail, fetchStart, fetchStart } from "../features/authSlice";
+import { fetchFail,getStockSucces, fetchStart } from "../features/stockSlice";
 import useAxios from "./useAxios";
-import { getStockSucces } from "../features/stockSlice";
 import { toastError, toastSuccess } from "../helper/ToastNotify";
 
 const useStock = () => {
@@ -14,7 +13,7 @@ const useStock = () => {
     try {
       const { data } = await axiosWithToken(`/${url}`);
       const apiData = data.data;
-      dispatch(getStockSucces(apiData));
+      dispatch(getStockSucces({apiData,url}));
     } catch (error) {
       dispatch(fetchFail());
       toastError(`Could not load ${url} information`)
@@ -32,19 +31,20 @@ const useStock = () => {
       toastError(`Could not delete ${url} information`)
     }
   };
-//   const postStock = async (url = "firms",id) => {
 
-//     dispatch(fetchStart());
+  const postStock = async (url = "firms",info) => {
 
-//     try {
-//       const { data } = await axiosWithToken(`/${url}/${id}`);
-//       toastSuccess()
-//       getStock(url)
-//     } catch (error) {
-//       dispatch(fetchFail());
-//       toastError(`Could not delete ${url} information`)
-//     }
-//   };
+    dispatch(fetchStart());
+
+    try {
+      const { data } = await axiosWithToken(`/${url}/` ,info);
+      toastSuccess()
+      getStock(url)
+    } catch (error) {
+      dispatch(fetchFail());
+      toastError(`Could not delete ${url} information`)
+    }
+  };
 
 
   return { getStock ,deleteStock, postStock};
