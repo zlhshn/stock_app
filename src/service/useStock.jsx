@@ -44,7 +44,7 @@ const useStock = () => {
     }
   };
 
-  const putStock = async (url = "firms", info ) => {
+  const putStock = async (url = "firms", info) => {
     dispatch(fetchStart());
     try {
       await axiosWithToken.put(`/${url}/${info._id}/`, info);
@@ -56,7 +56,18 @@ const useStock = () => {
     }
   };
 
-  return { getStock, deleteStock, postStock ,putStock};
+  const searchStock = async (url = "firms", value) => {
+    dispatch(fetchStart());
+    try {
+    const {data}=  await axiosWithToken(`/${url}/?search[name]=${value}`);
+      const apiData = data.data;
+      dispatch(getStockSucces({ apiData, url }));
+    } catch (error) {
+      dispatch(fetchFail());
+    }
+  };
+
+  return { getStock, deleteStock, postStock, putStock, searchStock };
 };
 
 export default useStock;
