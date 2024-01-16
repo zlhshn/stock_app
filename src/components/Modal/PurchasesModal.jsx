@@ -7,14 +7,12 @@ import { modalStyle } from "../../style/globalStyle";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
-import { useState } from "react";
 import FormControl from "@mui/material/FormControl";
 import { useSelector } from "react-redux";
 
-
-const ProductModal = ({ open, handleClose, info, setInfo }) => {
+const PurchasesModal = ({ open, handleClose, info, setInfo }) => {
   const { postStock } = useStock();
-  const { categories, brands } = useSelector((state) => state.stock);
+  const { products, brands, firms } = useSelector((state) => state.stock);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +21,7 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postStock("products", info);
+    postStock("purchases", info);
     handleClose();
   };
 
@@ -42,19 +40,19 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
             onSubmit={handleSubmit}
           >
             <FormControl>
-              <InputLabel id="categoryId">Category</InputLabel>
+              <InputLabel id="firmId">Firm</InputLabel>
               <Select
-                labelId="categoryId"
-                id="categoryId"
-                name="categoryId"
-                value={info.categoryId}
-                label="Category"
+                labelId="firmId"
+                id="firmId"
+                name="firmId"
+                value={info.firmId}
+                label="Firm"
                 onChange={handleChange}
               >
-                {/* <MenuItem value="">
+                <MenuItem value="">
                   <em>None</em>
-                </MenuItem> */}
-                {categories.map((item) => (
+                </MenuItem>
+                {firms.map((item) => (
                   <MenuItem key={item._id} value={item._id}>
                     {item.name}
                   </MenuItem>
@@ -62,7 +60,7 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
               </Select>
             </FormControl>
             <FormControl>
-              <InputLabel id="brandId">Brand</InputLabel>
+              <InputLabel id="brandId">Brands</InputLabel>
               <Select
                 labelId="brandId"
                 id="brandId"
@@ -71,9 +69,9 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
                 label="Brand"
                 onChange={handleChange}
               >
-                {/* <MenuItem value="">
+                <MenuItem value="">
                   <em>None</em>
-                </MenuItem> */}
+                </MenuItem>
                 {brands.map((item) => (
                   <MenuItem key={item._id} value={item._id}>
                     {item.name}
@@ -81,18 +79,48 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
                 ))}
               </Select>
             </FormControl>
+            <FormControl>
+              <InputLabel id="productId">Product</InputLabel>
+              <Select
+                labelId="productId"
+                id="productId"
+                name="productId"
+                value={info.productId}
+                label="Product"
+                onChange={handleChange}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {products.map((item) => (
+                  <MenuItem key={item._id} value={item._id}>
+                    {item.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
             <TextField
-              label="Product Name"
-              name="name"
-              id="name"
+              label="Quantity"
+              name="quantity"
+              id="quantity"
               type="text"
               variant="outlined"
-              value={info.name}
+              value={info.quantity}
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              label="Price"
+              name="price"
+              id="price"
+              type="text"
+              variant="outlined"
+              value={info.price}
               onChange={handleChange}
               required
             />
             <Button type="submit" variant="contained" size="large">
-              Add Product
+              Add New Purchase
             </Button>
           </Box>
         </Box>
@@ -101,4 +129,4 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
   );
 };
 
-export default ProductModal;
+export default PurchasesModal;

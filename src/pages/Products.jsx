@@ -6,21 +6,21 @@ import { useState } from "react";
 import { useEffect } from "react";
 import useStock from "../service/useStock";
 import { useSelector } from "react-redux";
+import TableSkeleton, { NoDataMsg } from "../components/DataFetchMsg";
+import Error from "../components/Error";
 
 const Products = () => {
   const { getStock } = useStock();
-  const { products } = useSelector((state) => state.stock);
-  const [info, setInfo] = useState({
-    name: "",
-    categories: "",
-    brands: "",
-  });
+  const { products, error, loading } = useSelector((state) => state.stock);
+
+  const initialState = { categoryId: "", brandId: "", name: "" };
+  const [info, setInfo] = useState(initialState);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
-    setInfo({ name: "", categories: "", brands: "" });
+    setInfo(initialState);
   };
   useEffect(() => {
     getStock("products");
@@ -52,7 +52,12 @@ const Products = () => {
         info={info}
         setInfo={setInfo}
       />
-      <ProductTable />
+       {error && <Error />}
+      {loading && <TableSkeleton />}
+
+      {!error && !loading && !products.length && <NoDataMsg />}
+
+      {!loading && !error && products.length > 0 && <ProductTable />}
     </>
   );
 };

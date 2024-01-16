@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import useStock from "../../service/useStock";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 
-export default function PurchasesTable() {
+export default function ProductTable() {
   const { products } = useSelector((state) => state.stock);
   const { deleteStock } = useStock();
   const getRowId = (row) => row._id;

@@ -7,9 +7,9 @@ import useStock from "../service/useStock";
 import FirmCard from "../components/FirmCard";
 import FirmModal from "../components/Modal/FirmModal";
 import { useState } from "react";
-import Loading from "../components/Loading";
 import Error from "../components/Error";
 import Box from "@mui/material/Box";
+import { CardSkeleton, ErrorMsg, NoDataMsg } from "../components/DataFetchMsg";
 
 const Firms = () => {
   const { firms, loading, error } = useSelector((state) => state.stock);
@@ -90,16 +90,22 @@ const Firms = () => {
         info={info}
         setInfo={setInfo}
       />
-      <Grid container gap={2} mt={3} justifyContent={"center"}>
-        {loading && <Loading />}
 
-        {firms?.map((firm) => (
-          <Grid item key={firm._id}>
-            <FirmCard firm={firm} handleOpen={handleOpen} setInfo={setInfo} />
-          </Grid>
-        ))}
-        {/* {error && <Error />} */}
-      </Grid>
+      {error && <Error />}
+
+      {loading && <CardSkeleton />}
+
+      {!error && !loading && !firms.length && <NoDataMsg />}
+
+      {!loading && !error && firms.length > 0 && (
+        <Grid container gap={2} mt={3} justifyContent={"center"}>
+          {firms?.map((firm) => (
+            <Grid item key={firm._id}>
+              <FirmCard firm={firm} handleOpen={handleOpen} setInfo={setInfo} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </>
   );
 };

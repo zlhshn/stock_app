@@ -1,12 +1,11 @@
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Grid } from "@mui/material";
+import { Alert, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import useStock from "../service/useStock";
 import { useSelector } from "react-redux";
 import BrandCard from "../components/BrandCard";
 import BrandModal from "../components/Modal/BrandModal";
-import Loading from "../components/Loading";
 import Error from "../components/Error";
 
 const Brands = () => {
@@ -54,18 +53,26 @@ const Brands = () => {
         info={info}
         setInfo={setInfo}
       />
-      <Grid container gap={4} mt={3} justifyContent={"center"}>
-        {loading && <Loading />}
-        {brands.map((brand) => (
-          <Grid item key={brand._id}>
-            <BrandCard
-              brand={brand}
-              handleOpen={handleOpen}
-              setInfo={setInfo}
-            />
-          </Grid>
-        ))}
-      </Grid>
+
+      {!loading && !brands?.length && (
+        <Alert severity="warning" sx={{ mt: 4, width: "50%" }}>
+          There is no brand to show
+        </Alert>
+      )}
+
+      {brands?.length > 0 && (
+        <Grid container gap={2} mt={3} justifyContent={"center"}>
+          {brands?.map((brand) => (
+            <Grid item key={brand._id}>
+              <BrandCard
+                brand={brand}
+                handleOpen={handleOpen}
+                setInfo={setInfo}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </>
   );
 };
