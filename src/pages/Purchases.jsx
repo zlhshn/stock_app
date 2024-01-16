@@ -31,6 +31,7 @@ const Purchases = () => {
     getStock("brands");
     getStock("categories");
     getStock("firms");
+    getStock("purchases")
   }, []);
 
   return (

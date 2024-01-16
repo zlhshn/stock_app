@@ -3,12 +3,12 @@ import Box from "@mui/material/Box";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
 import useStock from "../../service/useStock";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
-import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 
-export default function PurchasesTable() {
-  const { purchases} = useSelector((state) => state.stock);
-  const { deleteStock ,putStock} = useStock();
+export default function SalesTable() {
+  const { sales } = useSelector((state) => state.stock);
+  const { deleteStock, putStock } = useStock();
   const getRowId = (row) => row._id;
 
   const columns = [
@@ -20,21 +20,12 @@ export default function PurchasesTable() {
       headerAlign: "center",
       align: "center",
       sortable: false,
-      valueGetter: (params) =>{console.log(params);
-        return params.value.slice(0,10)}
-
+      valueGetter: (params) => {
+        console.log(params);
+        return params.value.slice(0, 10);
+      },
+    },
   
-    },
-    {
-      field: "firmId",
-      headerName: "Firm",
-      flex: 1.3,
-      headerAlign: "center",
-      align: "center",
-      headerClassName: 'super-app-theme--header',
-      valueGetter: (params) => params.row?.firmId?.name,
-    
-    },
     {
       field: "brandId",
       headerName: "Brand",
@@ -88,25 +79,30 @@ export default function PurchasesTable() {
           icon={<DeleteForeverIcon />}
           onClick={() => deleteStock("purchases", props.id)}
           label="Delete"
-          sx={{"&:hover": { color: "red" }}}
+          sx={{ "&:hover": { color: "red" } }}
         />,
         <GridActionsCellItem
-          icon={<ModeEditOutlineIcon  />}
+          icon={<ModeEditOutlineIcon />}
           onClick={() => putStock("purchases", props.id)}
           label="Delete"
-          sx={{"&:hover": { color: "red" }}}
+          sx={{ "&:hover": { color: "red" } }}
         />,
       ],
     },
   ];
 
   return (
-    <Box sx={{ width: "100%" , '& .super-app-theme--header': {
-      color: 'rgba(255, 7, 0, 0.55)',
-    }, }}>
+    <Box
+      sx={{
+        width: "100%",
+        "& .super-app-theme--header": {
+          color: "rgba(255, 7, 0, 0.55)",
+        },
+      }}
+    >
       <DataGrid
         autoHeight
-        rows={purchases}
+        rows={sales}
         columns={columns}
         pageSizeOptions={[5, 10, 20, 50, 100]}
         checkboxSelection
@@ -117,8 +113,8 @@ export default function PurchasesTable() {
           boxShadow: 2,
           // border: 2,
           // borderColor: 'primary.light',
-          '& .MuiDataGrid-cell:hover': {
-            color: 'primary.main',
+          "& .MuiDataGrid-cell:hover": {
+            color: "primary.main",
           },
         }}
       />
