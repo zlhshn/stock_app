@@ -1,5 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import PurchasesModal from "../components/Modal/PurchasesModal";
 import PurchasesTable from "../components/Table/PurchasesTable";
 import { useState } from "react";
@@ -9,11 +10,11 @@ import { useSelector } from "react-redux";
 
 const Purchases = () => {
   const { getStock } = useStock();
-  const { products, error, loading } = useSelector((state) => state.stock);
+  const { purchases, error, loading } = useSelector((state) => state.stock);
 
   const initialState = {
     firmId: "",
-    categoryId: "",
+    productId: "",
     brandId: "",
     quantity: "",
     price: "",
@@ -29,13 +30,12 @@ const Purchases = () => {
   useEffect(() => {
     getStock("products");
     getStock("brands");
-    getStock("categories");
     getStock("firms");
-    getStock("purchases")
+    getStock("purchases");
   }, []);
 
   return (
-    <>
+    <Box sx={{ height:"85vh"}}>
       <Typography color={"rebeccapurple"} fontWeight={"bold"} fontSize={28}>
         PURCHASES
       </Typography>
@@ -58,8 +58,12 @@ const Purchases = () => {
         info={info}
         setInfo={setInfo}
       />
-      <PurchasesTable />
-    </>
+      <PurchasesTable
+        purchases={purchases}
+        handleOpen={handleOpen}
+        setInfo={setInfo}
+      />
+    </Box>
   );
 };
 

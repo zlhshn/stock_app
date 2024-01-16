@@ -4,7 +4,7 @@ import { Grid, TextField } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import useStock from "../service/useStock";
-import FirmCard from "../components/FirmCard";
+import FirmCard from "../components/Card/FirmCard";
 import FirmModal from "../components/Modal/FirmModal";
 import { useState } from "react";
 import Error from "../components/Error";

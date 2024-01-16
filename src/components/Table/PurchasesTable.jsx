@@ -6,10 +6,26 @@ import useStock from "../../service/useStock";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
-export default function PurchasesTable() {
-  const { purchases} = useSelector((state) => state.stock);
-  const { deleteStock ,putStock} = useStock();
+export default function PurchasesTable({purchases,handleOpen,setInfo}) {
+
+  const { deleteStock} = useStock();
   const getRowId = (row) => row._id;
+
+  const handleEditClick = (params) => {
+    handleOpen();
+    setInfo({
+      ...params.row, 
+      productId: params.row?.productId?._id ,
+      firmId: params.row?.firmId?._id ,
+      brandId: params.row?.brandId?._id ,
+      quantity: params.row.quantity,
+      price: params.row.price,
+
+    });
+
+
+  };
+
 
   const columns = [
     {
@@ -20,7 +36,8 @@ export default function PurchasesTable() {
       headerAlign: "center",
       align: "center",
       sortable: false,
-      valueGetter: (params) =>{console.log(params);
+      valueGetter: (params) =>{
+        // console.log(params);
         return params.value.slice(0,10)}
 
   
@@ -92,8 +109,8 @@ export default function PurchasesTable() {
         />,
         <GridActionsCellItem
           icon={<ModeEditOutlineIcon  />}
-          onClick={() => putStock("purchases", props.id)}
-          label="Delete"
+          onClick={() => handleEditClick(props)}
+          label="Edit"
           sx={{"&:hover": { color: "red" }}}
         />,
       ],

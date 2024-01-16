@@ -6,10 +6,21 @@ import useStock from "../../service/useStock";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 
-export default function SalesTable() {
-  const { sales } = useSelector((state) => state.stock);
-  const { deleteStock, putStock } = useStock();
+export default function SalesTable({ sales, handleOpen, setInfo }) {
+
+  const { deleteStock } = useStock();
   const getRowId = (row) => row._id;
+
+  const handleEditClick = (params) => {
+    handleOpen();
+    setInfo({
+      ...params.row,
+      productId: params.row?.productId?._id,
+      brandId: params.row?.brandId?._id,
+      quantity: params.row.quantity,
+      price: params.row.price,
+    });
+  };
 
   const columns = [
     {
@@ -25,7 +36,7 @@ export default function SalesTable() {
         return params.value.slice(0, 10);
       },
     },
-  
+
     {
       field: "brandId",
       headerName: "Brand",
@@ -83,7 +94,7 @@ export default function SalesTable() {
         />,
         <GridActionsCellItem
           icon={<ModeEditOutlineIcon />}
-          onClick={() => putStock("purchases", props.id)}
+          onClick={() => handleEditClick(props)}
           label="Delete"
           sx={{ "&:hover": { color: "red" } }}
         />,

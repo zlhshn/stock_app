@@ -11,7 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import { useSelector } from "react-redux";
 
 const PurchasesModal = ({ open, handleClose, info, setInfo }) => {
-  const { postStock } = useStock();
+  const { postStock,putStock } = useStock();
   const { products, brands, firms } = useSelector((state) => state.stock);
 
   const handleChange = (e) => {
@@ -20,10 +20,15 @@ const PurchasesModal = ({ open, handleClose, info, setInfo }) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    postStock("purchases", info);
-    handleClose();
-  };
+    e.preventDefault()
+    if (info._id) {
+      putStock("purchases", info)
+    } else {
+      postStock("purchases", info)
+    }
+
+    handleClose()
+  }
 
   return (
     <div>
@@ -45,7 +50,7 @@ const PurchasesModal = ({ open, handleClose, info, setInfo }) => {
                 labelId="firmId"
                 id="firmId"
                 name="firmId"
-                value={info.firmId}
+                value={info.firmId || ""}
                 label="Firm"
                 onChange={handleChange}
               >
@@ -65,7 +70,7 @@ const PurchasesModal = ({ open, handleClose, info, setInfo }) => {
                 labelId="brandId"
                 id="brandId"
                 name="brandId"
-                value={info.brandId}
+                value={info.brandId || ""}
                 label="Brand"
                 onChange={handleChange}
               >
@@ -85,7 +90,7 @@ const PurchasesModal = ({ open, handleClose, info, setInfo }) => {
                 labelId="productId"
                 id="productId"
                 name="productId"
-                value={info.productId}
+                value={info.productId || ""}
                 label="Product"
                 onChange={handleChange}
               >
@@ -105,7 +110,7 @@ const PurchasesModal = ({ open, handleClose, info, setInfo }) => {
               id="quantity"
               type="text"
               variant="outlined"
-              value={info.quantity}
+              value={info.quantity || ""}
               onChange={handleChange}
               required
             />
@@ -115,7 +120,7 @@ const PurchasesModal = ({ open, handleClose, info, setInfo }) => {
               id="price"
               type="text"
               variant="outlined"
-              value={info.price}
+              value={info.price || ""}
               onChange={handleChange}
               required
             />

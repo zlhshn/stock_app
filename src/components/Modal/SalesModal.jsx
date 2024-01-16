@@ -66,7 +66,7 @@ const SalesModal = ({ open, handleClose, info, setInfo }) => {
                 labelId="productId"
                 id="productId"
                 name="productId"
-                value={info.productId}
+                value={info.productId || ""}
                 label="Product"
                 onChange={handleChange}
               >
@@ -86,7 +86,7 @@ const SalesModal = ({ open, handleClose, info, setInfo }) => {
               id="quantity"
               type="text"
               variant="outlined"
-              value={info.quantity}
+              value={info.quantity || ""}
               onChange={handleChange}
               required
             />
@@ -96,7 +96,7 @@ const SalesModal = ({ open, handleClose, info, setInfo }) => {
               id="price"
               type="text"
               variant="outlined"
-              value={info.price}
+              value={info.price || ""}
               onChange={handleChange}
               required
             />

@@ -5,11 +5,11 @@ import { useEffect } from "react";
 import useStock from "../service/useStock";
 import { useSelector } from "react-redux";
 import SalesTable from "../components/Table/SalesTable";
-import SalesModal from "../components/Modal/SalesModal"
+import SalesModal from "../components/Modal/SalesModal";
 
 const Sales = () => {
   const { getStock } = useStock();
-  const { products, error, loading } = useSelector((state) => state.stock);
+  const { sales, error, loading } = useSelector((state) => state.stock);
 
   const initialState = {
     productId: "",
@@ -28,7 +28,7 @@ const Sales = () => {
   useEffect(() => {
     getStock("products");
     getStock("brands");
-    getStock("sales")
+    getStock("sales");
   }, []);
 
   return (
@@ -55,7 +55,7 @@ const Sales = () => {
         info={info}
         setInfo={setInfo}
       />
-      <SalesTable />
+      <SalesTable sales={sales} handleOpen={handleOpen} setInfo={setInfo} />
     </>
   );
 };

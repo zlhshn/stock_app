@@ -1,15 +1,16 @@
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Alert, Grid } from "@mui/material";
+import { Alert, Grid, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import useStock from "../service/useStock";
 import { useSelector } from "react-redux";
-import BrandCard from "../components/BrandCard";
+import BrandCard from "../components/Card/BrandCard";
+import Box from "@mui/material/Box";
 import BrandModal from "../components/Modal/BrandModal";
 import Error from "../components/Error";
 
 const Brands = () => {
-  const { postStock, getStock } = useStock();
+  const { searchStock } = useStock();
   const { brands, loading, error } = useSelector((state) => state.stock);
 
   const [info, setInfo] = useState({
@@ -18,6 +19,9 @@ const Brands = () => {
     address: "",
     image: "",
   });
+
+  const [search, setSearch] = useState("");
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -26,27 +30,57 @@ const Brands = () => {
   };
 
   useEffect(() => {
-    getStock("brands");
-  }, []);
+    searchStock("brands", search);
+  }, [search]);
 
   return (
     <>
-      <Typography color={"rebeccapurple"} fontWeight={"bold"} fontSize={28}>
-        BRANDS
-      </Typography>
-      <Button
-        variant="contained"
-        onClick={handleOpen}
-        sx={{
-          bgcolor: "purple",
-          marginY: 3,
-          "&:hover ": {
-            backgroundColor: "plum",
-          },
-        }}
+      <Box
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        gap={3}
+        paddingX={4}
       >
-        New Brand
-      </Button>
+        {" "}
+        <Typography
+          color={"rebeccapurple"}
+          fontWeight={"bold"}
+          fontSize={28}
+          textAlign={"center"}
+        >
+          BRANDS
+        </Typography>
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={3}
+        >
+          <TextField
+            type="search"
+            id="outlined-basic"
+            label="Search"
+            variant="outlined"
+            value={search}
+            size="small"
+            onChange={(e) => setSearch(e.target.value)}
+          />{" "}
+          <Button
+            variant="contained"
+            onClick={handleOpen}
+            sx={{
+              bgcolor: "purple",
+              marginY: 3,
+              "&:hover ": {
+                backgroundColor: "plum",
+              },
+            }}
+          >
+            New Brand
+          </Button>
+        </Box>
+      </Box>
       <BrandModal
         open={open}
         handleClose={handleClose}

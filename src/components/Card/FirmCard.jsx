@@ -1,8 +1,7 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import useStock from "../service/useStock";
-import { btnStyle } from "../style/globalStyle"
-
+import useStock from "../../service/useStock";
+import { btnStyle } from "../../style/globalStyle";
 
 const FirmCard = ({ firm, setInfo, handleOpen }) => {
   const { address, image, name, phone, _id } = firm;

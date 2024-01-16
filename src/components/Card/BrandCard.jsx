@@ -1,10 +1,10 @@
-import useStock from "../service/useStock";
+import useStock from "../../service/useStock";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
-const BrandCard = ({brand,handleOpen, setInfo }) => {
-const {name,image,_id} = brand
-const {deleteStock}=useStock()
+const BrandCard = ({ brand, handleOpen, setInfo }) => {
+  const { name, image, _id } = brand;
+  const { deleteStock } = useStock();
 
   return (
     <div className="card w-80 bg-base-100 shadow-2xl">
@@ -29,7 +29,7 @@ const {deleteStock}=useStock()
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BrandCard
+export default BrandCard;

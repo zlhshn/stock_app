@@ -29,6 +29,11 @@ const icons = [
     icon: <PaidIcon />,
     url: "/dashboard/sales/",
   },
+  {
+    title: "Products",
+    icon: <InventoryIcon />,
+    url: "/dashboard/products/",
+  },
 
   {
     title: "Firms",
@@ -40,11 +45,6 @@ const icons = [
     title: "Brands",
     icon: <StarPurple500Icon />,
     url: "/dashboard/brands/",
-  },
-  {
-    title: "Products",
-    icon: <InventoryIcon />,
-    url: "/dashboard/products/",
   },
 ];
 
