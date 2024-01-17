@@ -8,6 +8,7 @@ import useStock from "../service/useStock";
 import { useSelector } from "react-redux";
 import TableSkeleton, { NoDataMsg } from "../components/DataFetchMsg";
 import Error from "../components/Error";
+import { Box } from "@mui/material";
 
 const Products = () => {
   const { getStock } = useStock();
@@ -29,7 +30,7 @@ const Products = () => {
   }, []);
 
   return (
-    <>
+    <Box sx={{ height:"85vh"}}>
       <Typography color={"rebeccapurple"} fontWeight={"bold"} fontSize={28}>
         PRODUCTS
       </Typography>
@@ -58,7 +59,7 @@ const Products = () => {
       {!error && !loading && !products.length && <NoDataMsg />}
 
       {!loading && !error && products.length > 0 && <ProductTable />}
-    </>
+    </Box>
   );
 };
 

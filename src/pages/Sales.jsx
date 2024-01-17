@@ -6,6 +6,7 @@ import useStock from "../service/useStock";
 import { useSelector } from "react-redux";
 import SalesTable from "../components/Table/SalesTable";
 import SalesModal from "../components/Modal/SalesModal";
+import { Box } from "@mui/material";
 
 const Sales = () => {
   const { getStock } = useStock();
@@ -32,7 +33,7 @@ const Sales = () => {
   }, []);
 
   return (
-    <>
+    <Box sx={{ height:"85vh"}}>
       <Typography color={"rebeccapurple"} fontWeight={"bold"} fontSize={28}>
         SALES
       </Typography>
@@ -56,7 +57,7 @@ const Sales = () => {
         setInfo={setInfo}
       />
       <SalesTable sales={sales} handleOpen={handleOpen} setInfo={setInfo} />
-    </>
+    </Box>
   );
 };
 

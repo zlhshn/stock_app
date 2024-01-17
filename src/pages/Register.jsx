@@ -11,6 +11,8 @@ import { Formik, Form } from "formik";
 import RegisterForm, {registerSchema} from "../components/RegisterForm";
 import useAuth from "../service/useAuth";
 
+
+
 const Register = () => {
   const { register } = useAuth();
 
@@ -18,23 +20,21 @@ const Register = () => {
 
   return (
     <Box
-      margin={"auto"}
+   
       sx={{
         display: "flex",
         flexDirection: "column",
-        gap: 2,
-        backgroundImage: `url(${image})`,
-        height: "100vh",
-        backgroundSize: "cover",
-        backgroundPosition: "top",
-        backgroundRepeat: "no-repeat",
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
         objectFit: "cover",
         backdropFilter: "blur(20px)", // Blur değeri
         WebkitBackdropFilter: "blur(5px)",
-        // filter: 'blur(5px)',
+        backgroundColor: "rgb(35,47,208)",
+        background: "linear-gradient(90deg, rgba(35,47,208,1) 0%, rgba(29,116,253,0.9429280397022333) 50%, rgba(69,208,252,1) 100%)",
+        
+   
+
       }}
     >
       <Grid
@@ -42,19 +42,24 @@ const Register = () => {
         justifyContent="center"
         alignItems={"center"}
         direction="row-reverse"
-        rowSpacing={{ sm: 3 }}
         sx={{
-          height: "100vh",
+          height: 'auto',
           p: 2,
+          minHeight: '100vh', 
+          '@media (min-width:600px)': {
+            height: '100vh',
+          },
         }}
       >
         <Grid item xs={12}>
           <Typography
             variant="h3"
-            color="primary"
+            color="secondary.light"
             justifyContent={"center"}
             alignItems={"center"}
             align="center"
+            fontWeight={"bold"}
+        
           >
             STOCK MANAGEMENT
           </Typography>
@@ -62,7 +67,7 @@ const Register = () => {
 
         <Grid
           item
-          xs={12}
+          xs={11}
           sm={10}
           md={7}
           sx={{
@@ -71,7 +76,7 @@ const Register = () => {
             boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
             backdropFilter: "blur(5px)",
             WebkitBackdropFilter: "blur(25px)",
-            border: "1px solid rgba(255, 255, 255, 0.8)",
+            border: "1px solid rgba(255, 255, 255, 0.3)",
             padding: "16px",
           }}
         >
@@ -88,7 +93,7 @@ const Register = () => {
           <Typography
             variant="h4"
             align="center"
-            mb={2}
+            mb={3}
             color="secondary.light"
           >
             Register
