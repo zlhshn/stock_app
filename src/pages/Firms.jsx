@@ -43,7 +43,7 @@ const Firms = () => {
         alignItems={"center"}
         gap={3}
         paddingX={4}
-        sx={{height:"85vh"}}
+    
       >
         {" "}
         <Typography
