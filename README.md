@@ -2,7 +2,8 @@
  <img src='./loginimage.png' width='200px' ></div>
   <br>
 
-### STOCK MANAGEMENT APP
+  <div align="center" size:"2rem" >
+ STOCK MANAGEMENT APP </div>
 
 ## Project Description
 
