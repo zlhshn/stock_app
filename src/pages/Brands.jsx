@@ -8,6 +8,7 @@ import BrandCard from "../components/Card/BrandCard";
 import Box from "@mui/material/Box";
 import BrandModal from "../components/Modal/BrandModal";
 import Error from "../components/Error";
+import { CardSkeleton, NoDataMsg } from "../components/DataFetchMsg";
 
 const Brands = () => {
   const { searchStock } = useStock();
@@ -41,7 +42,6 @@ const Brands = () => {
         alignItems={"center"}
         gap={3}
         paddingX={4}
-    
       >
         {" "}
         <Typography
@@ -89,25 +89,26 @@ const Brands = () => {
         setInfo={setInfo}
       />
 
-      {!loading && !brands?.length && (
-        <Alert severity="warning" sx={{ mt: 4, width: "50%" }}>
-          There is no brand to show
-        </Alert>
-      )}
+      {error && <Error />}
 
-      {brands?.length > 0 && (
-        <Grid container gap={2} mt={3} justifyContent={"center"}>
-          {brands?.map((brand) => (
-            <Grid item key={brand._id}>
-              <BrandCard
-                brand={brand}
-                handleOpen={handleOpen}
-                setInfo={setInfo}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      )}
+      <Grid container gap={5} mt={3} justifyContent={"center"}>
+        {loading ? (
+          <CardSkeleton />
+        ) : (
+          <>
+            {brands?.map((brand) => (
+              <Grid item key={brand._id}>
+                <BrandCard
+                  brand={brand}
+                  handleOpen={handleOpen}
+                  setInfo={setInfo}
+                />
+              </Grid>
+            ))}
+          </>
+        )}
+      </Grid>
+      {!error && !loading && !brands.length && <NoDataMsg />}
     </>
   );
 };

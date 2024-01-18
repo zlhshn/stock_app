@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Grid, TextField } from "@mui/material";
+import { Container, Grid, TextField } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import useStock from "../service/useStock";
@@ -43,7 +43,6 @@ const Firms = () => {
         alignItems={"center"}
         gap={3}
         paddingX={4}
-    
       >
         {" "}
         <Typography
@@ -94,19 +93,27 @@ const Firms = () => {
 
       {error && <Error />}
 
-      {loading && <CardSkeleton />}
+      <Grid container gap={5} mt={3} justifyContent={"center"} >
+        {loading ? (
+        
+            <CardSkeleton />
+        
+        ) : (
+          <>
+            {firms?.map((firm) => (
+              <Grid item key={firm._id}>
+                <FirmCard
+                  firm={firm}
+                  handleOpen={handleOpen}
+                  setInfo={setInfo}
+                />
+              </Grid>
+            ))}
+          </>
+        )}
+      </Grid>
 
       {!error && !loading && !firms.length && <NoDataMsg />}
-
-      {!loading && !error && firms.length > 0 && (
-        <Grid container gap={2} mt={3} justifyContent={"center"}>
-          {firms?.map((firm) => (
-            <Grid item key={firm._id}>
-              <FirmCard firm={firm} handleOpen={handleOpen} setInfo={setInfo} />
-            </Grid>
-          ))}
-        </Grid>
-      )}
     </>
   );
 };

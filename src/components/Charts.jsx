@@ -77,20 +77,12 @@ const AreaCharts = () => {
               index="nameBrand"
               valueFormatter={valueFormatter}
               showAnimation={true}
-              colors={[
-                "slate",
-                "violet",
-                "indigo",
-                "rose",
-                "cyan",
-                "amber",
-                "blue",
-              ]}
+              colors={["indigo", "rose", "cyan", "amber", "blue"]}
             />
           </Card>
         </Grid>
-      
-      <Grid
+
+        <Grid
           item
           xs={12}
           md={4}
@@ -100,26 +92,28 @@ const AreaCharts = () => {
         >
           <Card className=" h-[400px]">
             <Title>Sales by brand</Title>
-            <DonutChart
-              className=" mt-4 w-[100%]"
-              data={salesData}
-              category="amount"
-              index="nameBrand"
-              valueFormatter={valueFormatter}
-              showAnimation={true}
-              colors={[
-                "slate",
-                "violet",
-                "indigo",
-                "rose",
-                "cyan",
-                "amber",
-                "blue",
-              ]}
-            />
+            <div className="flex justify-center items-center h-[100%]">
+              <DonutChart
+                className=" mt-4 w-[100%]  h-[170px]"
+                data={salesData}
+                category="amount"
+                index="nameBrand"
+                valueFormatter={valueFormatter}
+                showAnimation={true}
+                colors={[
+                  "slate",
+                  "violet",
+                  "indigo",
+                  "rose",
+                  "cyan",
+                  "amber",
+                  "blue",
+                ]}
+              />
+            </div>
           </Card>
         </Grid>
-  
+
         <Grid
           item
           xs={12}
@@ -157,15 +151,7 @@ const AreaCharts = () => {
               index="nameBrand"
               valueFormatter={valueFormatter}
               showAnimation={true}
-              colors={[
-                "slate",
-                "violet",
-                "indigo",
-                "rose",
-                "cyan",
-                "amber",
-                "blue",
-              ]}
+              colors={["rose", "cyan", "amber", "blue"]}
             />
           </Card>
         </Grid>
@@ -178,24 +164,26 @@ const AreaCharts = () => {
           alignItems={"center"}
         >
           <Card className=" h-[400px]">
-            <Title>Sales by brand</Title>
-            <DonutChart
-              className=" mt-4 w-[100%]"
-              data={purchasesData}
-              category="amount"
-              index="nameBrand"
-              valueFormatter={valueFormatter}
-              showAnimation={true}
-              colors={[
-                "slate",
-                "violet",
-                "indigo",
-                "rose",
-                "cyan",
-                "amber",
-                "blue",
-              ]}
-            />
+            <Title>Purchases by brand</Title>
+            <div className="flex justify-center items-center h-[100%]">
+              <DonutChart
+                className=" mt-4 w-[100%]  h-[170px]"
+                data={purchasesData}
+                category="amount"
+                index="nameBrand"
+                valueFormatter={valueFormatter}
+                showAnimation={true}
+                colors={[
+                  "slate",
+                  "violet",
+                  "indigo",
+                  "rose",
+                  "cyan",
+                  "amber",
+                  "blue",
+                ]}
+              />
+            </div>
           </Card>
         </Grid>
       </Grid>

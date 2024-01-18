@@ -30,7 +30,7 @@ const Products = () => {
   }, []);
 
   return (
-    <Box sx={{ height:"85vh"}}>
+    <Box sx={{ height: "85vh" }}>
       <Typography color={"rebeccapurple"} fontWeight={"bold"} fontSize={28}>
         PRODUCTS
       </Typography>
@@ -53,12 +53,20 @@ const Products = () => {
         info={info}
         setInfo={setInfo}
       />
-       {error && <Error />}
-      {loading && <TableSkeleton />}
+
+      {error && <Error />}
+
+      {loading ? (
+        <TableSkeleton />
+      ) : (
+        <ProductTable
+          handleOpen={handleOpen}
+          setInfo={setInfo}
+          products={products}
+        />
+      )}
 
       {!error && !loading && !products.length && <NoDataMsg />}
-
-      {!loading && !error && products.length > 0 && <ProductTable />}
     </Box>
   );
 };

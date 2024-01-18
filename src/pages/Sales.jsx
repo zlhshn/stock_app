@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import SalesTable from "../components/Table/SalesTable";
 import SalesModal from "../components/Modal/SalesModal";
 import { Box } from "@mui/material";
+import TableSkeleton, { NoDataMsg } from "../components/DataFetchMsg";
+import Error from "../components/Error";
 
 const Sales = () => {
   const { getStock } = useStock();
@@ -33,7 +35,7 @@ const Sales = () => {
   }, []);
 
   return (
-    <Box sx={{ height:"85vh"}}>
+    <Box sx={{ height: "85vh" }}>
       <Typography color={"rebeccapurple"} fontWeight={"bold"} fontSize={28}>
         SALES
       </Typography>
@@ -56,7 +58,16 @@ const Sales = () => {
         info={info}
         setInfo={setInfo}
       />
-      <SalesTable sales={sales} handleOpen={handleOpen} setInfo={setInfo} />
+
+      {error && <Error />}
+
+      {loading ? (
+        <TableSkeleton />
+      ) : (
+        <SalesTable handleOpen={handleOpen} setInfo={setInfo} sales={sales} />
+      )}
+
+      {!error && !loading && !sales.length && <NoDataMsg />}
     </Box>
   );
 };
