@@ -7,11 +7,13 @@ import { useSelector } from "react-redux";
 import SalesTable from "../components/Table/SalesTable";
 import SalesModal from "../components/Modal/SalesModal";
 import { Box } from "@mui/material";
-import TableSkeleton, { NoDataMsg } from "../components/DataFetchMsg";
-import Error from "../components/Error";
+import TableSkeleton, { ErrorMsg, NoDataMsg } from "../components/DataFetchMsg";
+
+
 
 const Sales = () => {
   const { getPromise } = useStock();
+ 
   const { sales, error, loading } = useSelector((state) => state.stock);
 
   const initialState = {
@@ -28,7 +30,7 @@ const Sales = () => {
     setOpen(false);
     setInfo(initialState);
   };
-  
+
   useEffect(() => {
     getPromise(["products", "brands", "sales"]);
   }, []);
@@ -58,23 +60,26 @@ const Sales = () => {
         setInfo={setInfo}
       />
 
-      {error && <Error />}
+      {error && <ErrorMsg />}
 
       {loading && <TableSkeleton />}
 
-      {!error && !loading && (
-        <>
-          {sales.length === 0 ? (
-            <NoDataMsg />
-          ) : (
-            <SalesTable
-              handleOpen={handleOpen}
-              setInfo={setInfo}
-              sales={sales}
-            />
-          )}
-        </>
-      )}
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        {" "}
+        {!error && !loading && (
+          <>
+            {sales.length === 0 ? (
+              <NoDataMsg />
+            ) : (
+              <SalesTable
+                handleOpen={handleOpen}
+                setInfo={setInfo}
+                sales={sales}
+              />
+            )}
+          </>
+        )}
+      </Box>
     </Box>
   );
 };

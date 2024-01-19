@@ -9,11 +9,12 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SalesModal = ({ open, handleClose, info, setInfo }) => {
-  const { postStock,putStock } = useStock();
+  const { postStock } = useStock();
   const { products, brands } = useSelector((state) => state.stock);
-
+  const navigate = useNavigate()
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
@@ -46,13 +47,14 @@ const SalesModal = ({ open, handleClose, info, setInfo }) => {
                 labelId="brandId"
                 id="brandId"
                 name="brandId"
-                value={info.brandId}
+                value={info?.brandId?._id || info?.brandId}
                 label="Brand"
                 onChange={handleChange}
               >
-                <MenuItem value="">
-                  <em>None</em>
+              <MenuItem onClick={() => navigate("/dashboard/brands/")}>
+                  Add New Brand
                 </MenuItem>
+                <hr />
                 {brands.map((item) => (
                   <MenuItem key={item._id} value={item._id}>
                     {item.name}
@@ -66,7 +68,7 @@ const SalesModal = ({ open, handleClose, info, setInfo }) => {
                 labelId="productId"
                 id="productId"
                 name="productId"
-                value={info.productId || ""}
+                value={info?.productId?._id || info?.productId}
                 label="Product"
                 onChange={handleChange}
               >
@@ -86,7 +88,7 @@ const SalesModal = ({ open, handleClose, info, setInfo }) => {
               id="quantity"
               type="text"
               variant="outlined"
-              value={info.quantity || ""}
+              value={info?.quantity}
               onChange={handleChange}
               required
             />
@@ -96,12 +98,12 @@ const SalesModal = ({ open, handleClose, info, setInfo }) => {
               id="price"
               type="text"
               variant="outlined"
-              value={info.price || ""}
+              value={info?.price}
               onChange={handleChange}
               required
             />
-            <Button type="submit" variant="contained" size="large">
-              Add New Sale
+           <Button type="submit" variant="contained" size="large">
+              {info?._id ? "Update Sale" : "Add New Sale"}
             </Button>
           </Box>
         </Box>

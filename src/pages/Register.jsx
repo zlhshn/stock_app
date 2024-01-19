@@ -1,8 +1,6 @@
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import LockIcon from "@mui/icons-material/Lock";
-import image from "../assets/result.svg";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
@@ -120,12 +118,6 @@ const Register = () => {
             <Link to="/">Do you have an account?</Link>
           </Box>
         </Grid>
-
-        {/* <Grid item xs={0} sm={7} md={5}>
-          <Container>
-            <img src={image} alt="" />
-          </Container>
-        </Grid> */}
       </Grid>
     </Box>
   );

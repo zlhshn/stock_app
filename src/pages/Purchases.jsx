@@ -7,8 +7,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import useStock from "../service/useStock";
 import { useSelector } from "react-redux";
-import TableSkeleton, { NoDataMsg } from "../components/DataFetchMsg";
-import Error from "../components/Error";
+import TableSkeleton, { ErrorMsg, NoDataMsg } from "../components/DataFetchMsg";
+
 
 const Purchases = () => {
   const {getPromise} = useStock();
@@ -30,11 +30,7 @@ const Purchases = () => {
     setInfo(initialState);
   };
   useEffect(() => {
-    // getStock("products");
-    // getStock("brands");
-    // getStock("firms");
-    // getStock("purchases");
-    getPromise(["products",])
+    getPromise(["products","purchases","brands","firms"])
   }, []);
 
   return (
@@ -62,12 +58,13 @@ const Purchases = () => {
         setInfo={setInfo}
       />
 
-      {error && <Error />}
+      {error && <ErrorMsg />}
       {loading && <TableSkeleton />}
 
-       {!error && !loading && (
-        <>
-          
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        {" "}
+        {!error && !loading && (
+          <>
             {purchases.length === 0 ? (
               <NoDataMsg />
             ) : (
@@ -77,9 +74,9 @@ const Purchases = () => {
                 purchases={purchases}
               />
             )}
-          
-        </>
-      )}
+          </>
+        )}
+      </Box>
    
     </Box>
   );

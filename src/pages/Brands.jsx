@@ -1,14 +1,13 @@
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Alert, Grid, TextField } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import useStock from "../service/useStock";
 import { useSelector } from "react-redux";
 import BrandCard from "../components/Card/BrandCard";
 import Box from "@mui/material/Box";
 import BrandModal from "../components/Modal/BrandModal";
-import Error from "../components/Error";
-import { CardSkeleton, NoDataMsg } from "../components/DataFetchMsg";
+import { CardSkeleton, ErrorMsg, NoDataMsg } from "../components/DataFetchMsg";
 
 const Brands = () => {
   const { searchStock } = useStock();
@@ -90,7 +89,7 @@ const Brands = () => {
         setInfo={setInfo}
       />
 
-      {error && <Error />}
+      {error && <ErrorMsg />}
 
       <Grid container gap={5} mt={3} justifyContent={"center"} >
         {loading ? (
@@ -109,7 +108,8 @@ const Brands = () => {
           </>
         )}
       </Grid>
-      {!error && !loading && !brands.length && <NoDataMsg />}
+      <Box sx={{display:"flex" ,justifyContent:"center"}}>
+      {!error && !loading && !brands.length && <NoDataMsg />}</Box>
     </>
   );
 };

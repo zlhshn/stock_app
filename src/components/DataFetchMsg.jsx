@@ -1,20 +1,20 @@
-import { Alert, Grid, Skeleton, Stack, TextField } from "@mui/material";
+import { Alert, Grid, Skeleton, Stack} from "@mui/material";
 import Box from "@mui/material/Box";
+import NoData from  "../assets/nodata.png"
+import { Image } from "@mui/icons-material";
 
 export const ErrorMsg = () => {
   return (
     <Alert severity="error" sx={{ my: 3 }}>
-   Data cannot be fetched
+  404 | Not Found
   </Alert>
   );
 };
 
 export const NoDataMsg = () => {
   return (
-    <Box height={"70vh"}>
-      <Alert severity="warning" sx={{ my: 3 }}>
-        No data found{" "}
-      </Alert>
+    <Box height={"70vh"} sx={{padding:"2rem" ,textAlign:"center"}}>
+ <img src={NoData} width={"550px"} height={"350px"}/>
     </Box>
   );
 };

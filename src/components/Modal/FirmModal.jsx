@@ -13,7 +13,6 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
     setInfo({ ...info, [e.target.name]: e.target.value })
   }
 
-  console.log(info)
   const handleSubmit = (e) => {
     e.preventDefault()
     if (info._id) {
@@ -25,7 +24,6 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
     handleClose()
   }
 
-  console.log(info)
   return (
     <div>
       <Modal

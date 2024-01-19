@@ -7,11 +7,10 @@ import { useEffect } from "react";
 import useStock from "../service/useStock";
 import { useSelector } from "react-redux";
 import TableSkeleton, { ErrorMsg, NoDataMsg } from "../components/DataFetchMsg";
-import Error from "../components/Error";
 import { Box } from "@mui/material";
 
 const Products = () => {
-  const {getPromise } = useStock();
+  const { getPromise } = useStock();
   const { products, error, loading } = useSelector((state) => state.stock);
 
   const initialState = { categoryId: "", brandId: "", name: "" };
@@ -24,7 +23,7 @@ const Products = () => {
     setInfo(initialState);
   };
   useEffect(() => {
-    getPromise(["products","brands","categories"])
+    getPromise(["products", "brands", "categories"]);
   }, []);
 
   return (
@@ -55,19 +54,22 @@ const Products = () => {
       {error && <ErrorMsg />}
       {loading && <TableSkeleton />}
 
-      {!error && !loading && (
-        <>
-          {products.length === 0 ? (
-            <NoDataMsg />
-          ) : (
-            <ProductTable
-              handleOpen={handleOpen}
-              setInfo={setInfo}
-              products={products}
-            />
-          )}
-        </>
-      )}
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        {" "}
+        {!error && !loading && (
+          <>
+            {products.length === 0 ? (
+              <NoDataMsg />
+            ) : (
+              <ProductTable
+                handleOpen={handleOpen}
+                setInfo={setInfo}
+                products={products}
+              />
+            )}
+          </>
+        )}
+      </Box>
     </Box>
   );
 };

@@ -1,13 +1,12 @@
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Container, Grid, TextField } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import useStock from "../service/useStock";
 import FirmCard from "../components/Card/FirmCard";
 import FirmModal from "../components/Modal/FirmModal";
 import { useState } from "react";
-import Error from "../components/Error";
 import Box from "@mui/material/Box";
 import { CardSkeleton, ErrorMsg, NoDataMsg } from "../components/DataFetchMsg";
 
@@ -93,7 +92,7 @@ const Firms = () => {
         setInfo={setInfo}
       />
 
-      {error && <Error />}
+      {error && <ErrorMsg />}
 
       <Grid container gap={5} mt={3} justifyContent={"center"} >
         {loading ? (
@@ -115,7 +114,8 @@ const Firms = () => {
         )}
       </Grid>
 
-      {!error && !loading && !firms.length && <NoDataMsg />}
+      <Box sx={{display:"flex" ,justifyContent:"center"}}>
+      {!error && !loading && !firms.length && <NoDataMsg />}</Box>
     </>
   );
 };
