@@ -38,7 +38,7 @@ In this project, I aimed to create a frontend stock management project with glob
 
 ## The structure followed in the project
 
-- I created the project with the react library.
+- I created the project with the create-react-app.
 - First, planned the page structure using react router.
 - Carried out global state management in authentication processes using **Redux** and **Redux-toolkit** .
 - Validation operations in the form structure were performed using **Formik** and **Yup** libraries.
