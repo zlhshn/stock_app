@@ -7,12 +7,12 @@ const FirmCard = ({ firm, setInfo, handleOpen }) => {
 
   const { deleteStock } = useStock();
   return (
-    <div className="card w-80 bg-base-100 shadow-2xl">
+    <div className="card w-[230px] sm:w-[310px] bg-base-100 shadow-2xl">
       <figure className="h-[200px]" sx={{ objectFit: "contain" }}>
         <img src={firm?.image} alt={firm?.name}/>
       </figure>
       <div className="border-b-2"></div>
-      <div className="card-body h-[230px]">
+      <div className="card-body h-[280px] sm:h-[235px]">
         <h2 className="card-title">{firm?.name}</h2>
         <div className="badge badge-primary">{firm?.phone}</div>
         <p>{firm?.address}</p>

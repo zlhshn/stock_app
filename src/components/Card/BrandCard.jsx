@@ -7,7 +7,7 @@ const BrandCard = ({ brand, handleOpen, setInfo }) => {
   const { deleteStock } = useStock();
 
   return (
-    <div className="card w-80 bg-base-100 shadow-2xl">
+    <div className="card w-[230px] sm:w-[310px] bg-base-100 shadow-2xl">
       <figure className="h-[330px]" sx={{ objectFit: "contain" }}>
         <img src={image} alt={name} />
       </figure>

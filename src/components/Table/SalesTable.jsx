@@ -105,10 +105,9 @@ export default function SalesTable({ sales, handleOpen, setInfo }) {
   return (
     <Box
       sx={{
-        width: "100%",
-        "& .super-app-theme--header": {
-          color: "rgba(255, 7, 0, 0.55)",
-        },
+        width: "100%",   flex: "flex",
+        justifyContent: "center",
+      
       }}
     >
       <DataGrid
@@ -122,8 +121,6 @@ export default function SalesTable({ sales, handleOpen, setInfo }) {
         slots={{ toolbar: GridToolbar }}
         sx={{
           boxShadow: 2,
-          // border: 2,
-          // borderColor: 'primary.light',
           "& .MuiDataGrid-cell:hover": {
             color: "primary.main",
           },

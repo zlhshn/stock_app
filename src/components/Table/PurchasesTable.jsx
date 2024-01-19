@@ -47,7 +47,6 @@ export default function PurchasesTable({purchases,handleOpen,setInfo}) {
       flex: 1.3,
       headerAlign: "center",
       align: "center",
-      headerClassName: 'super-app-theme--header',
       valueGetter: (params) => params.row?.firmId?.name,
     
     },
@@ -117,9 +116,8 @@ export default function PurchasesTable({purchases,handleOpen,setInfo}) {
   ];
 
   return (
-    <Box sx={{ width: "100%" , '& .super-app-theme--header': {
-      color: 'rgba(255, 7, 0, 0.55)',
-    }, }}>
+    <Box sx={{ width: "100%" ,flex: "flex",
+    justifyContent: "center",}}>
       <DataGrid
         autoHeight
         rows={purchases}
@@ -131,8 +129,6 @@ export default function PurchasesTable({purchases,handleOpen,setInfo}) {
         slots={{ toolbar: GridToolbar }}
         sx={{
           boxShadow: 2,
-          // border: 2,
-          // borderColor: 'primary.light',
           '& .MuiDataGrid-cell:hover': {
             color: 'primary.main',
           },

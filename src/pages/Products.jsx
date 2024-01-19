@@ -11,7 +11,7 @@ import Error from "../components/Error";
 import { Box } from "@mui/material";
 
 const Products = () => {
-  const { getStock } = useStock();
+  const {getPromise } = useStock();
   const { products, error, loading } = useSelector((state) => state.stock);
 
   const initialState = { categoryId: "", brandId: "", name: "" };
@@ -24,13 +24,11 @@ const Products = () => {
     setInfo(initialState);
   };
   useEffect(() => {
-    getStock("products");
-    getStock("brands");
-    getStock("categories");
+    getPromise(["products","brands","categories"])
   }, []);
 
   return (
-    <Box sx={{ height: "85vh" }}>
+    <Box sx={{ height: "95vh" }}>
       <Typography color={"rebeccapurple"} fontWeight={"bold"} fontSize={28}>
         PRODUCTS
       </Typography>

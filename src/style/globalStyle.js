@@ -13,5 +13,8 @@ export const modalStyle = {
   p: 4,
   background: "rgba(255, 255, 255, 0.6)",
   backdropFilter: "blur(8px)",
+  '@media (max-width: 600px)': {
+    width: 300, 
+  },
 };
   

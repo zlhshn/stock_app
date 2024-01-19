@@ -9,10 +9,12 @@ import Products from "../pages/Products";
 import Sales from "../pages/Sales";
 import Firms from "../pages/Firms";
 import Brands from "../pages/Brands";
+import ScrollToTop from "../components/ScroolToTop";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
+    <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="register" element={<Register />} />

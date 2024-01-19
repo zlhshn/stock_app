@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
 import useStock from "../../service/useStock";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 export default function PurchasesTable() {
   const { products } = useSelector((state) => state.stock);
@@ -14,14 +14,13 @@ export default function PurchasesTable() {
     {
       field: "_id",
       headerName: "#",
-      flex: 0.6,
-      minWidth: "150px",
+      flex: 1.3,
       headerAlign: "center",
       align: "center",
       sortable: false,
-      valueGetter: (params) =>{ params.value.slice(-4)}
-
-  
+      valueGetter: (params) => {
+        params.value.slice(-4);
+      },
     },
     {
       field: "categoryId",
@@ -29,16 +28,13 @@ export default function PurchasesTable() {
       flex: 1.3,
       headerAlign: "center",
       align: "center",
-      headerClassName: 'super-app-theme--header',
       valueGetter: (params) => params.row?.categoryId?.name,
-     
     },
     {
       field: "brandId",
       headerName: "Brand",
       flex: 1.3,
       headerAlign: "center",
-      headerClassName: 'super-app-theme--header',
       align: "center",
       valueGetter: (params) => params.row?.brandId?.name,
     },
@@ -48,7 +44,7 @@ export default function PurchasesTable() {
       type: "number",
       flex: 1.3,
       headerAlign: "center",
-      headerClassName: 'super-app-theme--header',
+
       align: "center",
     },
     {
@@ -57,7 +53,7 @@ export default function PurchasesTable() {
       type: "number",
       flex: 1.3,
       headerAlign: "center",
-      headerClassName: 'super-app-theme--header',
+
       align: "center",
     },
     {
@@ -67,27 +63,31 @@ export default function PurchasesTable() {
       flex: 1.3,
       align: "center",
       headerAlign: "center",
-      headerClassName: 'super-app-theme--header',
+
       getActions: (props) => [
         <GridActionsCellItem
           icon={<DeleteForeverIcon />}
           onClick={() => deleteStock("products", props.id)}
           label="Delete"
-          sx={{"&:hover": { color: "red" }}}
+          sx={{ "&:hover": { color: "red" } }}
         />,
       ],
     },
   ];
 
   return (
-    <Box sx={{ width: "100%" , '& .super-app-theme--header': {
-      color: '#F23030', fontWeight:"bolder",
-    }, }}>
+    <Box
+      sx={{
+        width: "100%",
+        flex: "flex",
+        justifyContent: "center",
+      }}
+    >
       <DataGrid
         autoHeight
         rows={products}
         columns={columns}
-        he
+        width={"100%"}
         pageSizeOptions={[5, 10, 20, 50, 100]}
         checkboxSelection
         disableRowSelectionOnClick
@@ -95,10 +95,11 @@ export default function PurchasesTable() {
         slots={{ toolbar: GridToolbar }}
         sx={{
           boxShadow: 2,
-          // border: 2,
-          // borderColor: 'primary.light',
-          '& .MuiDataGrid-cell:hover': {
-            color: 'primary.main',
+          display:"flex",
+          flexWrap:"wrap",
+          width:"100%",
+          "& .MuiDataGrid-cell:hover": {
+            color: "primary.main",
           },
         }}
       />

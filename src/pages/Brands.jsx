@@ -40,8 +40,9 @@ const Brands = () => {
         display={"flex"}
         justifyContent={"space-between"}
         alignItems={"center"}
-        gap={3}
-        paddingX={4}
+        gap={2}
+        paddingX={2}
+        flexWrap={"wrap"}
       >
         {" "}
         <Typography
@@ -56,7 +57,7 @@ const Brands = () => {
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
-          gap={3}
+          gap={2}
         >
           <TextField
             type="search"
@@ -91,13 +92,13 @@ const Brands = () => {
 
       {error && <Error />}
 
-      <Grid container gap={5} mt={3} justifyContent={"center"}>
+      <Grid container gap={5} mt={3} justifyContent={"center"} >
         {loading ? (
           <CardSkeleton />
         ) : (
           <>
             {brands?.map((brand) => (
-              <Grid item key={brand._id}>
+              <Grid item key={brand._id} justifyContent={"center"} alignItems={"center"}>
                 <BrandCard
                   brand={brand}
                   handleOpen={handleOpen}

@@ -42,14 +42,15 @@ const Firms = () => {
         display={"flex"}
         justifyContent={"space-between"}
         alignItems={"center"}
-        gap={3}
-        paddingX={4}
+        gap={2}
+        paddingX={2}
+        flexWrap={"wrap"}
       >
         {" "}
         <Typography
           color={"rebeccapurple"}
           fontWeight={"bold"}
-          fontSize={28}
+          fontSize={26}
           textAlign={"center"}
         >
           FİRMS
@@ -58,7 +59,7 @@ const Firms = () => {
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
-          gap={3}
+          gap={2}
         >
           <TextField
             type="search"
@@ -102,7 +103,7 @@ const Firms = () => {
         ) : (
           <>
             {firms?.map((firm) => (
-              <Grid item key={firm._id}>
+              <Grid item key={firm._id} justifyContent={"center"} alignItems={"center"}>
                 <FirmCard
                   firm={firm}
                   handleOpen={handleOpen}
