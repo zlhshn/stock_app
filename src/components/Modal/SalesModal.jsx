@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const SalesModal = ({ open, handleClose, info, setInfo }) => {
-  const { postStock } = useStock();
+  const { postStock, putStock } = useStock()
   const { products, brands } = useSelector((state) => state.stock);
   const navigate = useNavigate()
   const handleChange = (e) => {
@@ -21,11 +21,16 @@ const SalesModal = ({ open, handleClose, info, setInfo }) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    postStock("sales", info);
-    handleClose();
-  };
+    e.preventDefault()
 
+    if (info._id) {
+      putStock("sales", info)
+    } else {
+      postStock("sales", info)
+    }
+
+    handleClose()
+  }
   return (
     <div>
       <Modal
@@ -50,6 +55,7 @@ const SalesModal = ({ open, handleClose, info, setInfo }) => {
                 value={info?.brandId?._id || info?.brandId}
                 label="Brand"
                 onChange={handleChange}
+                required
               >
               <MenuItem onClick={() => navigate("/dashboard/brands/")}>
                   Add New Brand
@@ -63,19 +69,22 @@ const SalesModal = ({ open, handleClose, info, setInfo }) => {
               </Select>
             </FormControl>
             <FormControl>
-              <InputLabel id="productId">Product</InputLabel>
+            <InputLabel variant="outlined" id="product-select-label">
+                Product
+              </InputLabel>
               <Select
-                labelId="productId"
+                labelId="product-select-label"
                 id="productId"
                 name="productId"
                 value={info?.productId?._id || info?.productId}
                 label="Product"
                 onChange={handleChange}
               >
-                <MenuItem value="">
-                  <em>None</em>
+                 <MenuItem onClick={() => navigate("/dashboard/products")}>
+                  Add New Product
                 </MenuItem>
-                {products.map((item) => (
+                <hr />
+                {products?.map((item) => (
                   <MenuItem key={item._id} value={item._id}>
                     {item.name}
                   </MenuItem>

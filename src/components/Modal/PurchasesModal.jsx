@@ -77,9 +77,10 @@ const PurchasesModal = ({ open, handleClose, info, setInfo }) => {
                 label="Brand"
                 onChange={handleChange}
               >
-                <MenuItem value="">
-                  <em>None</em>
+                <MenuItem onClick={() => navigate("/dashboard/brands")}>
+                  Add New Brand
                 </MenuItem>
+                <hr />
                 {brands.map((item) => (
                   <MenuItem key={item._id} value={item._id}>
                     {item.name}
@@ -97,9 +98,10 @@ const PurchasesModal = ({ open, handleClose, info, setInfo }) => {
                 label="Product"
                 onChange={handleChange}
               >
-                <MenuItem value="">
-                  <em>None</em>
+                 <MenuItem onClick={() => navigate("/dashboard/products")}>
+                  Add New Product
                 </MenuItem>
+                <hr />
                 {products.map((item) => (
                   <MenuItem key={item._id} value={item._id}>
                     {item.name}

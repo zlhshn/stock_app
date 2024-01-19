@@ -19,7 +19,7 @@ export default function PurchasesTable() {
       align: "center",
       sortable: false,
       valueGetter: (params) => {
-        params.value.slice(-4);
+        return params.value.slice(-4); 
       },
     },
     {

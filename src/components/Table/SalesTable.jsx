@@ -6,21 +6,10 @@ import useStock from "../../service/useStock";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 
-export default function SalesTable({ sales, handleOpen, setInfo }) {
-
+export default function SalesTable({ handleOpen, setInfo }) {
+  const { sales } = useSelector((state) => state.stock);
   const { deleteStock } = useStock();
   const getRowId = (row) => row._id;
-
-  const handleEditClick = (params) => {
-    handleOpen();
-    setInfo({
-      ...params.row,
-      productId: params.row?.productId?._id,
-      brandId: params.row?.brandId?._id,
-      quantity: params.row.quantity,
-      price: params.row.price,
-    });
-  };
 
   const columns = [
     {
@@ -31,9 +20,9 @@ export default function SalesTable({ sales, handleOpen, setInfo }) {
       headerAlign: "center",
       align: "center",
       sortable: false,
-      valueGetter: (params) => {
-        return params.value.slice(0, 10);
-      },
+
+      renderCell: ({ row }) =>
+        new Date(row.createdAt).toLocaleDateString("tr-TR"),
     },
 
     {
@@ -42,7 +31,7 @@ export default function SalesTable({ sales, handleOpen, setInfo }) {
       flex: 1.3,
       headerAlign: "center",
       align: "center",
-      valueGetter: (params) => params.row?.brandId?.name,
+      renderCell: ({ row }) => row?.brandId?.name,
     },
     {
       field: "productId",
@@ -51,7 +40,7 @@ export default function SalesTable({ sales, handleOpen, setInfo }) {
       flex: 1.3,
       headerAlign: "center",
       align: "center",
-      valueGetter: (params) => params.row?.productId?.name,
+      renderCell: ({ row }) => row?.productId?.name,
     },
     {
       field: "quantity",
@@ -84,29 +73,36 @@ export default function SalesTable({ sales, handleOpen, setInfo }) {
       flex: 1.3,
       align: "center",
       headerAlign: "center",
-      getActions: (props) => [
-        <GridActionsCellItem
-          icon={<DeleteForeverIcon />}
-          onClick={() => deleteStock("purchases", props.id)}
-          label="Delete"
-          sx={{ "&:hover": { color: "red" } }}
-        />,
-        <GridActionsCellItem
-          icon={<ModeEditOutlineIcon />}
-          onClick={() => handleEditClick(props)}
-          label="Delete"
-          sx={{ "&:hover": { color: "red" } }}
-        />,
-      ],
+      renderCell: ({ row: { brandId, price, quantity, productId, _id } }) => {
+        return [
+          <GridActionsCellItem
+            key="edit"
+            icon={<ModeEditOutlineIcon />}
+            label="Edit"
+            onClick={() => {
+              handleOpen();
+              setInfo({ brandId, price, quantity, productId, _id });
+            }}
+            sx={{ "&:hover": { color: "red" } }}
+          />,
+          <GridActionsCellItem
+            key="delete"
+            icon={<DeleteForeverIcon />}
+            label="Delete"
+            onClick={() => deleteStock("sales", _id)}
+            sx={{ "&:hover": { color: "red" } }}
+          />,
+        ];
+      },
     },
   ];
 
   return (
     <Box
       sx={{
-        width: "100%",   flex: "flex",
+        width: "100%",
+        flex: "flex",
         justifyContent: "center",
-      
       }}
     >
       <DataGrid
@@ -114,7 +110,6 @@ export default function SalesTable({ sales, handleOpen, setInfo }) {
         rows={sales}
         columns={columns}
         pageSizeOptions={[5, 10, 20, 50, 100]}
-        checkboxSelection
         disableRowSelectionOnClick
         getRowId={getRowId}
         slots={{ toolbar: GridToolbar }}

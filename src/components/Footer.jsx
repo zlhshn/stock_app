@@ -2,10 +2,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer class="bg-gray-50 mt-[30vh]">
-      <div class="mx-auto max-w-screen-xl ps-16 py-8 sm:px-6 lg:px-8 gap-2">
-        <div class="flex flex-wrap justify-center items-center gap-2">
-          <div class="flex flex-wrap justify-center  items-center">
+    <footer  className="bg-gray-50 mt-[30vh]">
+      <div  className="mx-auto max-w-screen-xl ps-16 py-8 sm:px-6 lg:px-8 gap-2">
+        <div  className="flex flex-wrap justify-center items-center gap-2">
+          <div  className="flex flex-wrap justify-center  items-center">
             <svg
               width="25"
               height="25"
@@ -19,7 +19,7 @@ const Footer = () => {
             </svg>
           </div>
 
-          <p class="text-center text-sm text-gray-500 lg:mt-0  flex flex-wrap">
+          <p className="text-center text-sm text-gray-500 lg:mt-0  flex flex-wrap">
             Copyright &copy; 2024. All rights reserved by zlhshn
           </p>
         </div>

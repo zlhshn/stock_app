@@ -74,7 +74,6 @@ const Sales = () => {
               <SalesTable
                 handleOpen={handleOpen}
                 setInfo={setInfo}
-                sales={sales}
               />
             )}
           </>

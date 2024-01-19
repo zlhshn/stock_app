@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import Box from "@mui/material/Box";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
@@ -6,25 +6,12 @@ import useStock from "../../service/useStock";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
-export default function PurchasesTable({purchases,handleOpen,setInfo}) {
+export default function PurchasesTable({handleOpen,setInfo}) {
 
+  const { purchases } = useSelector((state) => state.stock)
   const { deleteStock} = useStock();
   const getRowId = (row) => row._id;
 
-  const handleEditClick = (params) => {
-    handleOpen();
-    setInfo({
-      ...params.row, 
-      productId: params.row?.productId?._id ,
-      firmId: params.row?.firmId?._id ,
-      brandId: params.row?.brandId?._id ,
-      quantity: params.row.quantity,
-      price: params.row.price,
-
-    });
-
-
-  };
 
 
   const columns = [
@@ -36,10 +23,10 @@ export default function PurchasesTable({purchases,handleOpen,setInfo}) {
       headerAlign: "center",
       align: "center",
       sortable: false,
-      valueGetter: (params) =>{
-        return params.value.slice(0,10)}
-
-  
+    
+      renderCell: ({ row }) => {
+        return new Date(row.createdAt).toLocaleDateString("tr-TR")
+      },
     },
     {
       field: "firmId",
@@ -47,7 +34,7 @@ export default function PurchasesTable({purchases,handleOpen,setInfo}) {
       flex: 1.3,
       headerAlign: "center",
       align: "center",
-      valueGetter: (params) => params.row?.firmId?.name,
+      renderCell: ({ row }) => row?.firmId?.name,
     
     },
     {
@@ -56,7 +43,7 @@ export default function PurchasesTable({purchases,handleOpen,setInfo}) {
       flex: 1.3,
       headerAlign: "center",
       align: "center",
-      valueGetter: (params) => params.row?.brandId?.name,
+      renderCell: ({ row }) => row?.brandId?.name,
     },
     {
       field: "productId",
@@ -65,7 +52,7 @@ export default function PurchasesTable({purchases,handleOpen,setInfo}) {
       flex: 1.3,
       headerAlign: "center",
       align: "center",
-      valueGetter: (params) => params.row?.productId?.name,
+      renderCell: ({ row }) => row?.productId?.name,
     },
     {
       field: "quantity",
@@ -98,23 +85,32 @@ export default function PurchasesTable({purchases,handleOpen,setInfo}) {
       flex: 1.3,
       align: "center",
       headerAlign: "center",
-      getActions: (props) => [
-        <GridActionsCellItem
-          icon={<DeleteForeverIcon />}
-          onClick={() => deleteStock("purchases", props.id)}
-          label="Delete"
-          sx={{"&:hover": { color: "red" }}}
-        />,
-        <GridActionsCellItem
-          icon={<ModeEditOutlineIcon  />}
-          onClick={() => handleEditClick(props)}
-          label="Edit"
-          sx={{"&:hover": { color: "red" }}}
-        />,
-      ],
+      renderCell: ({
+        row: { brandId, productId, quantity, price, firmId, _id },
+      }) => {
+        return [
+          <GridActionsCellItem
+            key={"edit"}
+            icon={<ModeEditOutlineIcon/>}
+            label="Edit"
+            onClick={() => {
+              handleOpen()
+              setInfo({ _id, brandId, productId, quantity, price, firmId })
+            }}
+            sx={{"&:hover": { color: "red" }}}
+          />,
+          <GridActionsCellItem
+            key={"delete"}
+            icon={<DeleteForeverIcon />}
+            label="Delete"
+            onClick={() => deleteStock("purchases", _id)}
+            sx={{"&:hover": { color: "red" }}}
+          />,
+        ]
+      },
     },
   ];
-
+  
   return (
     <Box sx={{ width: "100%" ,flex: "flex",
     justifyContent: "center",}}>

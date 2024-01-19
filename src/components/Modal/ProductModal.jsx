@@ -51,9 +51,7 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
                 label="Category"
                 onChange={handleChange}
               >
-                {/* <MenuItem value="">
-                  <em>None</em>
-                </MenuItem> */}
+
                 {categories.map((item) => (
                   <MenuItem key={item._id} value={item._id}>
                     {item.name}
@@ -71,9 +69,7 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
                 label="Brand"
                 onChange={handleChange}
               >
-                {/* <MenuItem value="">
-                  <em>None</em>
-                </MenuItem> */}
+        
                 {brands.map((item) => (
                   <MenuItem key={item._id} value={item._id}>
                     {item.name}
