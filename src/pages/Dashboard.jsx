@@ -99,7 +99,7 @@ export default function Dashboard() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" , gap:"2rem" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open} sx={{ bgcolor: "#081226" }}>
         <Toolbar>

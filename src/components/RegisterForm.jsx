@@ -101,7 +101,7 @@ const RegisterForm = ({
           error={touched.password && Boolean(errors.password)}
           helperText={errors.password}
         />
-        <Button type="submit" variant="contained" size="large">
+        <Button type="submit" variant="contained" size="large" sx={{width:"50%" ,margin:"auto"}}>
           Submit
         </Button>
       </Box>

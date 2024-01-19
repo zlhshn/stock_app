@@ -1,11 +1,11 @@
-import { Alert, Grid, Skeleton, Stack } from "@mui/material";
+import { Alert, Grid, Skeleton, Stack, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 
 export const ErrorMsg = () => {
   return (
     <Alert severity="error" sx={{ my: 3 }}>
-      Data could not be fetched.
-    </Alert>
+   Data cannot be fetched
+  </Alert>
   );
 };
 
@@ -46,10 +46,13 @@ export const CardSkeleton = () => {
 const TableSkeleton = () => {
   return (
     <Stack spacing={1}>
-      <Skeleton variant="rectangular" width="100%" height={80} />
+      <Skeleton variant="rectangular" width="100%" height={70} />
       <Skeleton variant="rectangular" width="100%" height={40} />
       <Skeleton variant="rectangular" width="100%" height={40} />
-      <Skeleton variant="rectangular" width="100%" height={40} />
+      <Skeleton variant="rectangular" width="100%" height={30} />
+      <Skeleton variant="rectangular" width="100%" height={30} />
+      <Skeleton variant="rectangular" width="100%" height={30} />
+      <Skeleton variant="rectangular" width="100%" height={30} />
     </Stack>
   );
 };

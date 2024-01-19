@@ -5,8 +5,8 @@ import LockIcon from "@mui/icons-material/Lock";
 import image from "../assets/result.svg";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { Link, useNavigate } from "react-router-dom";
-import { Formik, Form } from "formik";
+import { Link } from "react-router-dom";
+import { Formik } from "formik";
 
 import RegisterForm, {registerSchema} from "../components/RegisterForm";
 import useAuth from "../service/useAuth";
@@ -30,8 +30,8 @@ const Register = () => {
         objectFit: "cover",
         backdropFilter: "blur(20px)", // Blur değeri
         WebkitBackdropFilter: "blur(5px)",
-        backgroundColor: "rgb(35,47,208)",
-        background: "linear-gradient(90deg, rgba(35,47,208,1) 0%, rgba(29,116,253,0.9429280397022333) 50%, rgba(69,208,252,1) 100%)",
+        backgroundColor: "rgb(35,47,205)",
+        background: "linear-gradient(90deg, #3a7eeb 0%, rgba(29,116,253,0.8) 50%, rgba(29,116,253,0.5) 100%)",
         
    
 
@@ -46,15 +46,15 @@ const Register = () => {
           height: 'auto',
           p: 2,
           minHeight: '100vh', 
-          '@media (min-width:600px)': {
+          '@media (min-width:500px)': {
             height: '100vh',
           },
         }}
       >
         <Grid item xs={12}>
           <Typography
-            variant="h3"
-            color="secondary.light"
+            variant="h4"
+            color="purple"
             justifyContent={"center"}
             alignItems={"center"}
             align="center"
@@ -69,9 +69,9 @@ const Register = () => {
           item
           xs={11}
           sm={10}
-          md={7}
+          md={5}
           sx={{
-            background: "rgba(255, 255, 255, 0.2)",
+            background: "rgba(255, 255, 255, 0.5)",
             borderRadius: "16px",
             boxShadow: "0 4px 30px rgba(0, 0, 0, 0.3)",
             backdropFilter: "blur(5px)",
@@ -82,7 +82,7 @@ const Register = () => {
         >
           <Avatar
             sx={{
-              backgroundColor: "secondary.light",
+              backgroundColor: "purple",
               m: "auto",
               width: 40,
               height: 40,
@@ -94,7 +94,7 @@ const Register = () => {
             variant="h4"
             align="center"
             mb={3}
-            color="secondary.light"
+            color="purple"
           >
             Register
           </Typography>

@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Stack } from "@mui/material";
+import { Box, Grid} from "@mui/material";
 import { AreaChart, Card, Title, DonutChart, BarChart } from "@tremor/react";
 import { useSelector } from "react-redux";
 
@@ -27,16 +27,13 @@ const AreaCharts = () => {
     nameProduct: item.productId?.name,
     brandprice: item.price,
   }));
-  console.log(sales);
-  //   console.log(salesData);
-  //   console.log(purchasesData);
-
+ 
   return (
-    <Box>
+    <Box sx={{paddingTop:"2rem"}}>
       <Grid
         container
         mt={2}
-        spacing={2}
+        spacing={4}
         justifyContent={"center"}
         alignItems={"center"}
       >
@@ -129,7 +126,7 @@ const AreaCharts = () => {
               data={purchasesData}
               index="date"
               categories={["amount", "quantity", "price"]}
-              colors={["yellow", "purple", "pink"]}
+              colors={["green", "blue", "red"]}
               valueFormatter={valueFormatter}
             />
           </Card>

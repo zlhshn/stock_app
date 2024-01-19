@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import stockImage from "../assets/loginimage.png";
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
-import loginSpinner from "../assets/loading-gif-png-5.gif";
 import useAuth from "../service/useAuth";
 
 const Login = () => {
@@ -30,13 +29,13 @@ const Login = () => {
     <div className="bg-[#3a7eeb]  h-[100vh] flex flex-col justify-center items-center   ">
       <div className="box-border rounded-lg bg-white bg-opacity-20 shadow-lg backdrop-filter backdrop-blur-md border border-white border-opacity-30 flex flex-wrap justify-around items-center w-[70%] h-[60%]  p-3 min-h-[60%]">
         <div className="w-1/2  hidden lg:block ">
-          <h2 className="mt-1 text-center text-2xl font-bold leading-9 tracking-wide text-white">
+          <h2 className="mt-1 text-center text-xl font-bold leading-9 tracking-wide text-white">
             Stock Management
           </h2>
 
           <img src={stockImage} alt="" className="w-[100%] h-[100%]" />
         </div>
-        <div className="rounded-lg md:bg-[#CDD7E1] p-1 py-1 sm:px-6 sm:py-10 lg::px-15 w-[%100] ">
+        <div className="rounded-lg md:bg-[#CDD7E1] p-5 py-1 sm:px-10 sm:py-14  w-[%100] ">
           <Formik
             initialValues={{ email: "", password: "" }}
             validationSchema={loginSchema}
@@ -52,7 +51,6 @@ const Login = () => {
               touched,
               handleChange,
               handleBlur,
-              isSubmitting,
             }) => (
               <Form>
                 <div className="space-y-3 m-auto h-[80%]">

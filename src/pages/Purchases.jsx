@@ -11,7 +11,7 @@ import TableSkeleton, { NoDataMsg } from "../components/DataFetchMsg";
 import Error from "../components/Error";
 
 const Purchases = () => {
-  const { getStock } = useStock();
+  const {getPromise} = useStock();
   const { purchases, error, loading } = useSelector((state) => state.stock);
 
   const initialState = {
@@ -30,10 +30,11 @@ const Purchases = () => {
     setInfo(initialState);
   };
   useEffect(() => {
-    getStock("products");
-    getStock("brands");
-    getStock("firms");
-    getStock("purchases");
+    // getStock("products");
+    // getStock("brands");
+    // getStock("firms");
+    // getStock("purchases");
+    getPromise(["products",])
   }, []);
 
   return (

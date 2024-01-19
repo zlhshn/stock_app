@@ -28,6 +28,7 @@ const Sales = () => {
     setOpen(false);
     setInfo(initialState);
   };
+  
   useEffect(() => {
     getPromise(["products", "brands", "sales"]);
   }, []);
