@@ -134,8 +134,8 @@ export default function Dashboard() {
           },
         }}
       >
-        <DrawerHeader sx={{ bgcolor: "#61727C", color: "white" }}>
-          <IconButton onClick={handleDrawerClose}>
+        <DrawerHeader sx={{ bgcolor: "#164773", color: "white" }}>
+          <IconButton onClick={handleDrawerClose} sx={{color:"white"}}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (

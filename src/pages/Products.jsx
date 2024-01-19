@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import useStock from "../service/useStock";
 import { useSelector } from "react-redux";
-import TableSkeleton, { NoDataMsg } from "../components/DataFetchMsg";
+import TableSkeleton, { ErrorMsg, NoDataMsg } from "../components/DataFetchMsg";
 import Error from "../components/Error";
 import { Box } from "@mui/material";
 
@@ -54,19 +54,22 @@ const Products = () => {
         setInfo={setInfo}
       />
 
-      {error && <Error />}
+      {error && <ErrorMsg />}
+      {loading && <TableSkeleton />}
 
-      {loading ? (
-        <TableSkeleton />
-      ) : (
-        <ProductTable
-          handleOpen={handleOpen}
-          setInfo={setInfo}
-          products={products}
-        />
+      {!error && !loading && (
+        <>
+          {products.length === 0 ? (
+            <NoDataMsg />
+          ) : (
+            <ProductTable
+              handleOpen={handleOpen}
+              setInfo={setInfo}
+              products={products}
+            />
+          )}
+        </>
       )}
-
-      {!error && !loading && !products.length && <NoDataMsg />}
     </Box>
   );
 };

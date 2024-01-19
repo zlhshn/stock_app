@@ -12,8 +12,9 @@ import Box from "@mui/material/Box";
 import { CardSkeleton, ErrorMsg, NoDataMsg } from "../components/DataFetchMsg";
 
 const Firms = () => {
+  const { searchStock } = useStock();
   const { firms, loading, error } = useSelector((state) => state.stock);
-  const { getStock, searchStock } = useStock();
+  
 
   const [info, setInfo] = useState({
     name: "",

@@ -25,24 +25,20 @@ export default function PurchasesTable() {
     },
     {
       field: "categoryId",
-      // headerName: "Category",
+      headerName: "Category",
       flex: 1.3,
       headerAlign: "center",
       align: "center",
       headerClassName: 'super-app-theme--header',
       valueGetter: (params) => params.row?.categoryId?.name,
-      renderHeader: (paramss) => (
-        <strong color="red">
-          Category 
-        
-        </strong>
-      ),
+     
     },
     {
       field: "brandId",
       headerName: "Brand",
       flex: 1.3,
       headerAlign: "center",
+      headerClassName: 'super-app-theme--header',
       align: "center",
       valueGetter: (params) => params.row?.brandId?.name,
     },
@@ -52,6 +48,7 @@ export default function PurchasesTable() {
       type: "number",
       flex: 1.3,
       headerAlign: "center",
+      headerClassName: 'super-app-theme--header',
       align: "center",
     },
     {
@@ -60,6 +57,7 @@ export default function PurchasesTable() {
       type: "number",
       flex: 1.3,
       headerAlign: "center",
+      headerClassName: 'super-app-theme--header',
       align: "center",
     },
     {
@@ -69,6 +67,7 @@ export default function PurchasesTable() {
       flex: 1.3,
       align: "center",
       headerAlign: "center",
+      headerClassName: 'super-app-theme--header',
       getActions: (props) => [
         <GridActionsCellItem
           icon={<DeleteForeverIcon />}
@@ -82,12 +81,13 @@ export default function PurchasesTable() {
 
   return (
     <Box sx={{ width: "100%" , '& .super-app-theme--header': {
-      color: 'rgba(255, 7, 0, 0.55)',
+      color: '#F23030', fontWeight:"bolder",
     }, }}>
       <DataGrid
         autoHeight
         rows={products}
         columns={columns}
+        he
         pageSizeOptions={[5, 10, 20, 50, 100]}
         checkboxSelection
         disableRowSelectionOnClick

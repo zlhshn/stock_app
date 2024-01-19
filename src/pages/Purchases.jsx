@@ -62,18 +62,24 @@ const Purchases = () => {
       />
 
       {error && <Error />}
+      {loading && <TableSkeleton />}
 
-      {loading ? (
-        <TableSkeleton />
-      ) : (
-        <PurchasesTable
-          purchases={purchases}
-          handleOpen={handleOpen}
-          setInfo={setInfo}
-        />
+       {!error && !loading && (
+        <>
+          
+            {purchases.length === 0 ? (
+              <NoDataMsg />
+            ) : (
+              <PurchasesTable
+                handleOpen={handleOpen}
+                setInfo={setInfo}
+                purchases={purchases}
+              />
+            )}
+          
+        </>
       )}
-
-      {!error && !loading && !purchases.length && <NoDataMsg />}
+   
     </Box>
   );
 };

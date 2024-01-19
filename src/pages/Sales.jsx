@@ -11,7 +11,7 @@ import TableSkeleton, { NoDataMsg } from "../components/DataFetchMsg";
 import Error from "../components/Error";
 
 const Sales = () => {
-  const { getStock } = useStock();
+  const { getPromise } = useStock();
   const { sales, error, loading } = useSelector((state) => state.stock);
 
   const initialState = {
@@ -29,9 +29,7 @@ const Sales = () => {
     setInfo(initialState);
   };
   useEffect(() => {
-    getStock("products");
-    getStock("brands");
-    getStock("sales");
+    getPromise(["products", "brands", "sales"]);
   }, []);
 
   return (
@@ -61,13 +59,21 @@ const Sales = () => {
 
       {error && <Error />}
 
-      {loading ? (
-        <TableSkeleton />
-      ) : (
-        <SalesTable handleOpen={handleOpen} setInfo={setInfo} sales={sales} />
-      )}
+      {loading && <TableSkeleton />}
 
-      {!error && !loading && !sales.length && <NoDataMsg />}
+      {!error && !loading && (
+        <>
+          {sales.length === 0 ? (
+            <NoDataMsg />
+          ) : (
+            <SalesTable
+              handleOpen={handleOpen}
+              setInfo={setInfo}
+              sales={sales}
+            />
+          )}
+        </>
+      )}
     </Box>
   );
 };

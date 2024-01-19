@@ -1,31 +1,31 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Modal from "@mui/material/Modal";
-import useStock from "../../service/useStock";
-import { modalStyle } from "../../style/globalStyle";
+// import { useState } from "react"
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
+import TextField from "@mui/material/TextField"
+import Modal from "@mui/material/Modal"
+import { modalStyle } from "../../style/globalStyle"
+import useStock from "../../service/useStock"
 
-const FirmModal = ({ open, handleClose, info, setInfo }) => {
-  const { postStock, putStock } = useStock();
-  
+export default function FirmModal({ open, handleClose, info, setInfo }) {
+  const { postStock, putStock } = useStock()
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInfo({ ...info, [name]: value });
-  };
+    setInfo({ ...info, [e.target.name]: e.target.value })
+  }
 
+  console.log(info)
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (info._id) {
-      putStock("firms", info);
+      putStock("firms", info)
     } else {
-      postStock("firms", info);
+      postStock("firms", info)
     }
 
-    handleClose();
-  };
+    handleClose()
+  }
 
+  console.log(info)
   return (
     <div>
       <Modal
@@ -81,13 +81,11 @@ const FirmModal = ({ open, handleClose, info, setInfo }) => {
               required
             />
             <Button type="submit" variant="contained" size="large">
-            {info._id ? "Update Firm" : "Add Firm"}
+              {info._id ? "Update Firm" : "Add Firm"}
             </Button>
           </Box>
         </Box>
       </Modal>
     </div>
-  );
-};
-
-export default FirmModal;
+  )
+}

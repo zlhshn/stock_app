@@ -8,10 +8,10 @@ export const modalStyle = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
+  border: "2px solid #164773",
+  boxShadow: 2,
   p: 4,
-  // background: "rgba(255, 255, 255, 0.2)",
-  // backdropFilter: "blur(8px)",
+  background: "rgba(255, 255, 255, 0.6)",
+  backdropFilter: "blur(8px)",
 };
   

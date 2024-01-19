@@ -1,5 +1,10 @@
 import { useDispatch } from "react-redux";
-import { fetchFail, getStockSucces, fetchStart } from "../features/stockSlice";
+import {
+  fetchFail,
+  getStockSucces,
+  getPromiseSuccess,
+  fetchStart,
+} from "../features/stockSlice";
 import useAxios from "./useAxios";
 import { toastError, toastSuccess } from "../helper/ToastNotify";
 
@@ -17,6 +22,19 @@ const useStock = () => {
     } catch (error) {
       dispatch(fetchFail());
       toastError(`Could not load ${url} information`);
+    }
+  };
+
+  const getPromise = async (endpoints) => {
+    dispatch(fetchStart());
+    try {
+      const responses = await Promise.all(
+        endpoints.map((endpoint) => axiosWithToken(endpoint))
+      );
+      const data = responses.map((response) => response?.data?.data);
+      dispatch(getPromiseSuccess({ data, endpoints }));
+    } catch (error) {
+      dispatch(fetchFail());
     }
   };
 
@@ -59,7 +77,7 @@ const useStock = () => {
   const searchStock = async (url = "firms", value) => {
     dispatch(fetchStart());
     try {
-    const {data}=  await axiosWithToken(`/${url}/?search[name]=${value}`);
+      const { data } = await axiosWithToken(`/${url}/?search[name]=${value}`);
       const apiData = data.data;
       dispatch(getStockSucces({ apiData, url }));
     } catch (error) {
@@ -67,7 +85,14 @@ const useStock = () => {
     }
   };
 
-  return { getStock, deleteStock, postStock, putStock, searchStock };
+  return {
+    getStock,
+    deleteStock,
+    postStock,
+    putStock,
+    searchStock,
+    getPromise,
+  };
 };
 
 export default useStock;

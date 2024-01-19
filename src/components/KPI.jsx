@@ -54,8 +54,9 @@ const KPI = () => {
         <Card
           key={item.id}
           className="max-w-xs mx-auto"
-          decoration="top"
+          decoration="left"
           decorationColor= {item.decorationColor}
+          decorationSize= "30px"
         >
           <Flex className="space-x-1">
             <div>

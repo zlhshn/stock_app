@@ -4,11 +4,10 @@ import useStock from "../service/useStock";
 import AreaCharts from "../components/Charts";
 
 const Home = () => {
-  const { getStock } = useStock();
+  const { getPromise } = useStock();
 
   useEffect(() => {
-    getStock("sales");
-    getStock("purchases");
+    getPromise(["sales", "purchases"]);
   }, []);
 
   return (

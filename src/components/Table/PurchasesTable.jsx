@@ -37,7 +37,6 @@ export default function PurchasesTable({purchases,handleOpen,setInfo}) {
       align: "center",
       sortable: false,
       valueGetter: (params) =>{
-        // console.log(params);
         return params.value.slice(0,10)}
 
   

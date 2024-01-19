@@ -29,7 +29,7 @@ const Login = () => {
   return (
     <div className="bg-[#3a7eeb]  h-[100vh] flex flex-col justify-center items-center   ">
       <div className="box-border rounded-lg bg-white bg-opacity-20 shadow-lg backdrop-filter backdrop-blur-md border border-white border-opacity-30 flex flex-wrap justify-around items-center w-[70%] h-[60%]  p-3 min-h-[60%]">
-        <div className="w-1/2  hidden lg:block">
+        <div className="w-1/2  hidden lg:block ">
           <h2 className="mt-1 text-center text-2xl font-bold leading-9 tracking-wide text-white">
             Stock Management
           </h2>
