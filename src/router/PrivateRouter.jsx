@@ -8,7 +8,7 @@ const PrivateRouter = () => {
 
   return user ? (
     <>
-      <Outlet /> <Footer />{" "}
+      <Outlet /> <Footer />
     </>
   ) : (
     <Navigate to="/" />

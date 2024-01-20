@@ -1,19 +1,19 @@
-<div align="center" >
- <img src='./loginimage.png' width='200px' ></div>
+<div align="center" style="color: #0B60B0; font-size: 28px; font-family: 'Arial', sans-serif;">
+  <img src='./loginimage.png' alt='Stock Image' width='200px'>
   <br>
+ STOCK MANAGEMENT APP
+</div>
 
-  <div align="center" color="blue">
- STOCK MANAGEMENT APP </div>
 
 ## Project Description
 
-In this project, I aimed to create a frontend stock management project with global state management and working with Restapi.
+In the stock management project, which is a multi-page frontend web application, I implemented global state management using Redux and used the REST API in the Node.js backend structure."
 
 ##  Live Link of the Project
 [LİVE](https://stock-app-zlhshn.vercel.app/)
 
 ## How does my project look
-![stock]()
+![stock](stock.gif)
 
 ## Tech/framework used
 📦 React.js <br>
@@ -34,7 +34,7 @@ In this project, I aimed to create a frontend stock management project with glob
 📦 POSTMAN <br>
 📦 Redux DevTool <br>
 
-## How to use?
+
 
 ## The structure followed in the project
 
@@ -51,5 +51,14 @@ In this project, I aimed to create a frontend stock management project with glob
 - **React-tremor** library was used for graphic drawings on the dashboard page
 - It was written by trying to pay attention to **DRY** principles.
 
-  ## API Reference
+
+## How to use?
+⭐ This web application is created based on stock control management.
+⭐ Users can access the page after registering or logging in.
+⭐ In the application, product, purchase and sales tracking can be done.
+⭐ Firms and brands information can be added, deleted and edited.
+⭐ Total sales,total purchases  and profit can be displayed on the dashboard.
+
+## API Reference
+  https://16150.fullstack.clarusway.com/
   

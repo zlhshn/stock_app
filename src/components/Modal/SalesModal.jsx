@@ -20,11 +20,10 @@ const SalesModal = ({ open, handleClose, info, setInfo }) => {
     setInfo({ ...info, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
-
     if (info._id) {
-      putStock("sales", info)
+     await putStock("sales", info)
     } else {
       postStock("sales", info)
     }

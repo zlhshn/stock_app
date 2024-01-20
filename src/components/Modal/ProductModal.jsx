@@ -7,15 +7,15 @@ import { modalStyle } from "../../style/globalStyle";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
-import { useState } from "react";
 import FormControl from "@mui/material/FormControl";
 import { useSelector } from "react-redux";
 
 
 const ProductModal = ({ open, handleClose, info, setInfo }) => {
   const { postStock } = useStock();
-  const { categories, brands } = useSelector((state) => state.stock);
+  const { categories, brands,products } = useSelector((state) => state.stock);
 
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
@@ -23,7 +23,6 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target);
     postStock("products", info);
     handleClose();
   };

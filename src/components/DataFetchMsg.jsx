@@ -24,8 +24,8 @@ export const CardSkeleton = () => {
 
   return (
     <>
-      {arr.map((item) => (
-        <Grid item>
+      {arr.map((item,i) => (
+        <Grid item key={i}>
           <div className="flex flex-col flex-wrap gap-5 w-80 ">
             <div className="skeleton h-[200px] w-full "></div>
             <div className="skeleton h-4 w-20 "></div>

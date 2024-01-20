@@ -23,7 +23,6 @@ const Sales = () => {
     price: "",
   };
   const [info, setInfo] = useState(initialState);
-console.log(info);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
 

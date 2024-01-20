@@ -34,7 +34,7 @@ const Brands = () => {
   }, [search]);
 
   return (
-    <>
+    <Box sx={{minHeight:"100vh"}} >
       <Box
         display={"flex"}
         justifyContent={"space-between"}
@@ -43,7 +43,7 @@ const Brands = () => {
         paddingX={2}
         flexWrap={"wrap"}
       >
-        {" "}
+      
         <Typography
           color={"rebeccapurple"}
           fontWeight={"bold"}
@@ -110,7 +110,7 @@ const Brands = () => {
       </Grid>
       <Box sx={{display:"flex" ,justifyContent:"center"}}>
       {!error && !loading && !brands.length && <NoDataMsg />}</Box>
-    </>
+    </Box>
   );
 };
 

@@ -20,7 +20,6 @@ const useAuth = () => {
     try {
       const { data } = await axiosPublic.post("/auth/login/", userInfo);
       dispatch(loginSuccess(data));
-      console.log("merhaba");
       toastSuccess("Login is successful.");
       navigate("/dashboard");
     } catch (error) {
