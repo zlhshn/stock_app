@@ -1,13 +1,13 @@
-<div align="center" style="color: #0B60B0; font-size: 28px; font-family: 'Arial', sans-serif;">
+<p align="center" style="color: #0B60B0; font-size: 28px; font-family: 'Arial', sans-serif;">
   <img src='./loginimage.png' alt='Stock Image' width='200px'>
   <br>
- STOCK MANAGEMENT APP
-</div>
+  STOCK MANAGEMENT APP
+</p>
 
 
 ## Project Description
 
-In the stock management project, which is a multi-page frontend web application, I implemented global state management using Redux and used the REST API in the Node.js backend structure."
+In the stock management project, which is a multi-page frontend web application, I worked global state management using Redux and used the REST API in the Node.js backend structure.
 
 ##  Live Link of the Project
 [LİVE](https://stock-app-zlhshn.vercel.app/)
@@ -53,12 +53,18 @@ In the stock management project, which is a multi-page frontend web application,
 
 
 ## How to use?
-⭐ This web application is created based on stock control management.
-⭐ Users can access the page after registering or logging in.
-⭐ In the application, product, purchase and sales tracking can be done.
-⭐ Firms and brands information can be added, deleted and edited.
-⭐ Total sales,total purchases  and profit can be displayed on the dashboard.
+⭐ This web application is created based on stock control management.<br>
+⭐ Users can access the page after registering or logging in.<br>
+⭐ In the application, product, purchase and sales tracking can be done.<br>
+⭐ Firms and brands information can be added, deleted and edited.<br>
+⭐ Total sales,total purchases  and profit can be displayed on the dashboard.<br>
 
 ## API Reference
   https://16150.fullstack.clarusway.com/
+
+## To run the project
+ install the dependencies:.<br><br>
+ `yarn install` OR `npm install`.<br><br>
+ Then start the application:.<br><br>
+`yarn start` OR `npm start`.<br><br>
   
