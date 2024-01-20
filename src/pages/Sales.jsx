@@ -23,16 +23,17 @@ const Sales = () => {
     price: "",
   };
   const [info, setInfo] = useState(initialState);
-
+console.log(info);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
+
   const handleClose = () => {
     setOpen(false);
     setInfo(initialState);
   };
 
   useEffect(() => {
-    getPromise(["products", "brands", "sales"]);
+    getPromise(["sales","products", "brands" ]);
   }, []);
 
   return (
@@ -74,6 +75,7 @@ const Sales = () => {
               <SalesTable
                 handleOpen={handleOpen}
                 setInfo={setInfo}
+                sales={sales}
               />
             )}
           </>

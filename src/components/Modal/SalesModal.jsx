@@ -69,16 +69,17 @@ const SalesModal = ({ open, handleClose, info, setInfo }) => {
               </Select>
             </FormControl>
             <FormControl>
-            <InputLabel variant="outlined" id="product-select-label">
+            <InputLabel variant="outlined" id="productId">
                 Product
               </InputLabel>
               <Select
-                labelId="product-select-label"
+                labelId="productId"
                 id="productId"
                 name="productId"
                 value={info?.productId?._id || info?.productId}
                 label="Product"
                 onChange={handleChange}
+                required
               >
                  <MenuItem onClick={() => navigate("/dashboard/products")}>
                   Add New Product

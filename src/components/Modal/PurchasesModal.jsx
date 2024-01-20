@@ -76,6 +76,7 @@ const PurchasesModal = ({ open, handleClose, info, setInfo }) => {
                 value={info?.brandId?._id || info?.brandId}
                 label="Brand"
                 onChange={handleChange}
+                required
               >
                 <MenuItem onClick={() => navigate("/dashboard/brands")}>
                   Add New Brand
@@ -97,6 +98,7 @@ const PurchasesModal = ({ open, handleClose, info, setInfo }) => {
                 value={info?.productId?._id || info?.productId}
                 label="Product"
                 onChange={handleChange}
+                required
               >
                  <MenuItem onClick={() => navigate("/dashboard/products")}>
                   Add New Product

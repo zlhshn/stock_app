@@ -36,7 +36,6 @@ export default function SalesTable({ handleOpen, setInfo }) {
     {
       field: "productId",
       headerName: "Product",
-      type: "text",
       flex: 1.3,
       headerAlign: "center",
       align: "center",

@@ -23,6 +23,7 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(e.target);
     postStock("products", info);
     handleClose();
   };
@@ -47,7 +48,7 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
                 labelId="categoryId"
                 id="categoryId"
                 name="categoryId"
-                value={info.categoryId}
+                value={info?.categoryId?._id || info?.categoryId}
                 label="Category"
                 onChange={handleChange}
               >
@@ -65,7 +66,7 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
                 labelId="brandId"
                 id="brandId"
                 name="brandId"
-                value={info.brandId}
+                value={info?.brandId?._id || info?.brandId}
                 label="Brand"
                 onChange={handleChange}
               >
@@ -83,7 +84,7 @@ const ProductModal = ({ open, handleClose, info, setInfo }) => {
               id="name"
               type="text"
               variant="outlined"
-              value={info.name}
+              value={info?.name}
               onChange={handleChange}
               required
             />
