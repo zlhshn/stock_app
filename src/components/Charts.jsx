@@ -14,7 +14,7 @@ const AreaCharts = () => {
     price: item.price,
     quantity: item.quantity,
     amount: item.amount,
-    nameBrand: item.brandId.name,
+    nameBrand: item.brandId?.name,
     nameProduct: item.productId?.name,
     brandprice: item.price,
   }));
@@ -23,7 +23,7 @@ const AreaCharts = () => {
     price: item.price,
     quantity: item.quantity,
     amount: item.amount,
-    nameBrand: item.brandId.name,
+    nameBrand: item.brandId?.name,
     nameProduct: item.productId?.name,
     brandprice: item.price,
   }));
