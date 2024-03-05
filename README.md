@@ -7,7 +7,8 @@
 
 ## Project Description
 
-In the stock management project, which is a multi-page frontend web application, I worked global state management using Redux and used the REST API in the Node.js backend structure.
+In the stock management project, which is a multi-page frontend web application, I worked on global state management using Redux and used the REST API in the Node.js backend structure.
+It is an application where users can control stock, add, delete and edit companies, brands and products and view this information in a table.
 
 ##  Live Link of the Project
 [LİVE](https://stock-app-zlhshn.vercel.app/)
